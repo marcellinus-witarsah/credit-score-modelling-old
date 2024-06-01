@@ -54,7 +54,7 @@ For running the application locally, you can just use `anaconda` or `venv` but m
 ### How is the proportion of the response variable?
 
 The response variable is unbalanced, with Good Customers (0) making up approximately **78.2%** and Bad Customers (1) making up about **21.8%**. This imbalance is common in the credit industry, as most users are not expected to default.
-![Proportion of Loan Status](reports/figures/proportion_of_person_home_ownership_by_loan_status.png)
+![Proportion of Loan Status](reports/figures/proportion_of_loan_status.png)
 
 ### Are there missing values inside the predictor variables?
 There are missing values in the `person_emp_length` and `loan_int_rate` explanatory variables.
