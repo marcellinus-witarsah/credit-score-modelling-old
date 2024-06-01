@@ -177,7 +177,7 @@ Example results of calculting the Weight of Evidence is shown below (using `optb
 | Totals |                      | 22806 |  1.000000 |     17831 |  4975 |   0.218144 |           | 0.576370 | 0.067146 |
 
 
-![WoE Plot Person Income](reports/figures/WoE_plot_person_income.png)
+![WoE Plot Person Income](reports/figures/woe_plot_person_income.png)
 
 This plot shows that the higher the person income the higher the WoE that proves that the person is a Good Customer.
 
