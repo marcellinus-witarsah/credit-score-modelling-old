@@ -6,29 +6,29 @@
 A leading Bank XYZ wants to improve its loan approval process. Currently, this process is done manually, which is slow and inconsistent. The bank wants to automate credit scoring to speed up approvals and reduce errors while managing the risk of loan defaults. To solve this, the bank plans to use automated credit scoring, which leverage machine learning model to make better decisions.
 
 The main goal of this project is to create a credit scorecard model that is able to calculate the credit score of applicants. This will help the bank:
-    1. Automate Loan Approvals: Make the process faster and more efficient.
-    2. Manage Risk Better: Accurately identify high-risk applicants to minimize defaults.
-    3. Standardize Decisions: Ensure consistent and objective loan approvals.
-    4. Grow the Business: Approve more loans to creditworthy customers.
+1. Automate Loan Approvals: Make the process faster and more efficient.
+2. Manage Risk Better: Accurately identify high-risk applicants to minimize defaults.
+3. Standardize Decisions: Ensure consistent and objective loan approvals.
+4. Grow the Business: Approve more loans to creditworthy customers.
     
 ## Project Scope
 For this project, the project scope will be:
-    1. Data: 
-        Utilize Credit Bureau Data sourced from Kaggle. This dataset contains comprehensive information on loan applicants, including their credit history, demographic details, and financial behavior.
-    2. Product:
-        - Credit Scorecard Model: Logistic Regression Model trained using a Weight of Evidence.
-        - Credit Scorecard: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
+1. Data: 
+    Utilize Credit Bureau Data sourced from Kaggle. This dataset contains comprehensive information on loan applicants, including their credit history, demographic details, and financial behavior.
+2. Product:
+    - Credit Scorecard Model: Logistic Regression Model trained using a Weight of Evidence.
+    - Credit Scorecard: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
 ## Tools and Python Packages
 ## Tools 
-    1. Code Editor: Visual Studio Code
-    2. Python Version: 3.10.13
+1. Code Editor: Visual Studio Code
+2. Python Version: 3.10.13
 
 ### Python Packages 
-    1. Data Manipulation Packages used for handling and importing dataset such as `pandas` and `numpy`.
-    2. Data Visualization: Packages used for data visualization such as `matplotlib` and `seaborn`. 
-    3. Data Preprocessing: Packages used for binning process such as `optbinning`.  
-    4. Scorecard Modelling: Packages that were used to create a credit scorecard and a credit scorecard model model such as `scikit-learn`, and `optbinning`.
-    5. Model Evaluation: Packages that were used to evaluate model such as `scikit-learn`.
+1. Data Manipulation Packages used for handling and importing dataset such as `pandas` and `numpy`.
+2. Data Visualization: Packages used for data visualization such as `matplotlib` and `seaborn`. 
+3. Data Preprocessing: Packages used for binning process such as `optbinning`.  
+4. Scorecard Modelling: Packages that were used to create a credit scorecard and a credit scorecard model model such as `scikit-learn`, and `optbinning`.
+5. Model Evaluation: Packages that were used to evaluate model such as `scikit-learn`.
 ## Installation and Setup
 For running the application locally, you can just use `anaconda` or `venv` but make sure the python version is 3.10.13. Then, install the the specified libraries inside `requirements.txt` 
 ```bash
@@ -121,14 +121,14 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
 ![Histogram loan_percent_income vs loan_status](reports/figures/histogram_loan_percent_income_vs_loan_status.png)
 
 ### Do certain categories of the categorical predictor variable have higher or lower probabilities of a specific class in the response variable?
-    1. `person_home_ownership`: The probability of default is highest among those who still **rent** (32%) and those with **other types** of home ownership (31%).
-    ![Probability of Default given person_home_ownership](reports/figures/probability_default_by_given_person_home_ownership.png)
-    2. `loan_intent`: The probability of loan default is highest among those who took out loans for **debt consolidation** (29%), followed by **medical needs** (27%), **home improvement** (26%), **personal loans** (20%), **education loans** (17%), and **ventures** (15%).
-    ![Probability of Default given loan_intent](reports/figures/probability_default_by_given_loan_intent.png)
-    3. `loan_grade`: The probability of loan default is higher for those who has grade **G** (98%), **F** (71%), **E** (64%), and **D** (59%).
-    ![Probability of Default given loan_grade](reports/figures/probability_default_by_given_loan_grade.png)
-    4. `cb_person_default_on_file`: The probability of loan default is higher for those who has history of default (38%).
-    ![Probability of Default given cb_person_default_on_file](reports/figures/probability_default_by_given_cb_person_default_on_file.png)
+1. `person_home_ownership`: The probability of default is highest among those who still **rent** (32%) and those with **other types** of home ownership (31%).
+![Probability of Default given person_home_ownership](reports/figures/probability_default_by_given_person_home_ownership.png)
+2. `loan_intent`: The probability of loan default is highest among those who took out loans for **debt consolidation** (29%), followed by **medical needs** (27%), **home improvement** (26%), **personal loans** (20%), **education loans** (17%), and **ventures** (15%).
+![Probability of Default given loan_intent](reports/figures/probability_default_by_given_loan_intent.png)
+3. `loan_grade`: The probability of loan default is higher for those who has grade **G** (98%), **F** (71%), **E** (64%), and **D** (59%).
+![Probability of Default given loan_grade](reports/figures/probability_default_by_given_loan_grade.png)
+4. `cb_person_default_on_file`: The probability of loan default is higher for those who has history of default (38%).
+![Probability of Default given cb_person_default_on_file](reports/figures/probability_default_by_given_cb_person_default_on_file.png)
 
 ### How is the correlation amongst numerical predictor variable? (Multicollinearity)
 ![Correlation Matrix Heatmap](reports/figures/correlation_matrix_heatmap.png)
