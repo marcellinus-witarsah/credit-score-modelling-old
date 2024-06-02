@@ -32,7 +32,7 @@ For this project, the project scope will be:
 ## Installation and Setup
 For running the application locally, you can just use `anaconda` or `venv` but make sure the python version is 3.10.13. Then, install the the specified libraries inside `requirements.txt` 
 ```bash
-  cd CreditScorer
+  cd credit-scorecard-modelling
   pip install -r requirements.txt
 ```
 ## About the Data
