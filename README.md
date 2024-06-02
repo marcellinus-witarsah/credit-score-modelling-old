@@ -193,7 +193,7 @@ Monotonicity indicates a consistent, predictable relationship between the predic
 
 #### Information Value
 IV is used to measure the predictive power of the feature on the value of the specified binary response variable (0 or 1). The formula for calculating the IV is
-$$ \text{WoE} = \sum (\text{Proportion of Good} - \text{Proportion of Bad}) * \text{WoE} $$
+$$\text{WoE} = \sum (\text{Proportion of Good} - \text{Proportion of Bad}) * \text{WoE}$$
 Here is the table shows the interpretation of each IV.
 | Information Value | Predictive Power                        |
 |-------------------|-----------------------------------------|
@@ -264,7 +264,7 @@ The most important thing is the model calibration which is close to the perfect 
 
 ## Credit Scorecard and Points Scaling
 Credit Scorecard will show how points represented by the bins generated from the predictor variable. Generating the score points will involve scaling calculations from the logistic regression parameters and WoE(s) from grouped attributes inside each characteristics. The formula for calculating the points is:
-$$\text{Attribute Score} = -(WoE_{j}*\beta_{i}+\frac{a}{n}) * Factor + \frac{Offset}{n} $$
+$$\text{Attribute Score} = -(WoE_{j}*\beta_{i}+\frac{a}{n}) * Factor + \frac{Offset}{n}$$
 
 We can calculate Factor and Offset by these formulas: 
 $$\text{pdo} = Factor * \ln{(2)} \text{, therefore } Factor = pdo / \ln{(2)}$$
@@ -310,6 +310,7 @@ With this report the management can easily understand the model performance espe
 1. https://www.amazon.com/Credit-Risk-Scorecards-Implementing-Intelligent/dp/047175451X
 
 ## Improvement
+- [ ] Refine README.md documentation
 - [ ] Modularize the code from Python Notebook into Python Scripts.
 - [ ] Create a machine learnign pipeline for automate training and testing process.
 - [ ] Create an interactive website that allow to predict credit score based on input.
