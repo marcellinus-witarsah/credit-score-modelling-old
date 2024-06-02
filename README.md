@@ -1,5 +1,5 @@
 
-# CreditScorer: An Intelligent Credit Scoring Model 
+# Credit Scorecard Modelling 
 ![Credit Score Image](https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg)
 
 ## Background
