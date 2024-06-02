@@ -295,7 +295,7 @@ This is only my own thoughts on what the management might want to know about the
 
 This report table is a summary of credit level statistics based on the count of Good Customer and Bad Customers inside each credit level.
 1. **Credit Level**: This column indicates the different levels of creditworthiness.
-2. **Credit Lower** Bound and Credit Upper Bound: These columns define the score ranges for each credit level. For example, the "Very Poor" credit level ranges from negative infinity (or the lowest possible score) up to 350.
+2. **Credit Lower Bound and Credit Upper Bound**: These columns define the score ranges for each credit level. For example, the "Very Poor" credit level ranges from negative infinity (or the lowest possible score) up to 350.
 3. **Credit Description**: This column provides a description or label for each credit level.
 4. **Customers**: The number of customers or individuals falling within each credit level.
 5. **Customers Rate**: This column might represent the percentage of customers in each credit level relative to the total number of customers.
