@@ -27,9 +27,9 @@ For this project, the project scope will be:
 1. Data: 
     Utilize Credit Bureau Data sourced from Kaggle. This dataset contains comprehensive information on loan applicants, including their credit history, demographic details, and financial behavior.
 2. Deliverables:
-    - Credit Scorecard Model: Logistic Regression Model trained using a Weight of Evidence.
-    - Credit Scorecard: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
-    - Credit Scorecard Coverage Table: Table containing model coverage on good customers and bad customers at each credit levels. 
+    - **Credit Scorecard Model**: Logistic Regression Model trained using a Weight of Evidence.
+    - **Credit Scorecard**: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
+    - **Credit Scorecard Coverage Table**: Table containing model coverage on good customers and bad customers at each credit levels. 
 
 ## Tools and Python Packages
 ### Tools 
@@ -312,12 +312,12 @@ This plot shows that the higher the person income the higher the WoE that proves
 
 When we plot the WoE values, we want to look for monotonicity, which means the WoE values should either gradually increase or decrease.
 
-**Why is Monotonicity Important?**
+Why is Monotonicity Important?
 
 Monotonicity indicates a consistent, predictable relationship between the predictor variable and the response variable. This is particularly important for the following reasons:
-1. Model Stability: Monotonic relationships lead to more stable and reliable models. Non-monotonic relationships can introduce noise and reduce the model's ability to generalize well to unseen data.
-2. Interpretability: Monotonic WoE values make the model more interpretable. It is easier to explain that as the value of a certain variable increases, the risk of default increases (or decreases), which is intuitive for stakeholders.
-3. Logistic Regression Compatibility: Logistic regression assumes a linear relationship between the independent variables and the log-odds of the dependent variable. Monotonic WoE values help to satisfy this assumption, as they reflect a more straightforward relationship that logistic regression can capture effectively.
+1. **Model Stability**: Monotonic relationships lead to more stable and reliable models. Non-monotonic relationships can introduce noise and reduce the model's ability to generalize well to unseen data.
+2. **Interpretability**: Monotonic WoE values make the model more interpretable. It is easier to explain that as the value of a certain variable increases, the risk of default increases (or decreases), which is intuitive for stakeholders.
+3. **Logistic Regression Compatibility**: Logistic regression assumes a linear relationship between the independent variables and the log-odds of the dependent variable. Monotonic WoE values help to satisfy this assumption, as they reflect a more straightforward relationship that logistic regression can capture effectively.
 
 #### Information Value
 IV is used to measure the predictive power of the feature on the value of the specified binary response variable (0 or 1). The formula for calculating the IV is
@@ -330,7 +330,6 @@ Here is the table shows the interpretation of each IV.
 | 0.1 - 0.3         | Medium predictor                        |
 | 0.3 - 0.5         | Strong predictor                        |
 | > 0.5             | Suspiciously good. Check further        |
-
 
 Here is the result of the IV
 |    |             Characteristic |       IV |         Interpretation |
@@ -369,13 +368,13 @@ Logistic Regression is a machine learning model used to predict outcome of a bin
 $$p=\frac{1}{1 + e^{-(\beta_{0} +\beta_{1}x_{1}+\beta_{2}x_{2}+...+\beta_{q}x_{q})}}$$
 
 ## Evaluation
-Evaluation metrics used should assess the model's discriminative ability rather than conventional classification metrics like recall, precision, and F1-score. While recall, precision, and F1-score are useful in many classification contexts, credit risk models are often evaluated on their ability to rank-order risk and their calibration.
+**Evaluation metrics used should assess the model's discriminative ability rather than conventional classification metrics like recall, precision, and F1-score**.
 Key evaluation metrics for credit risk models include:
-1. ROC AUC (Receiver Operating Characteristic Area Under the Curve): Measures the model's ability to distinguish between classes. It provides an aggregate measure of performance across all classification thresholds.
-2. Precision-Recall Curve:Particularly useful in cases of imbalanced classes. It focuses on the performance related to the positive class (default cases).
-3. Gini Coefficient:A variant of the AUC, often used in credit scoring, which ranges from 0 to 1. It measures the ability of the model to differentiate between good and bad accounts.
-4. Kolmogorov-Smirnov (KS) Statistic:Evaluates the maximum separation between the cumulative distributions of the good and bad accounts. Higher KS values indicate better model performance.
-5. Model Calibration: Assesses how well the predicted probabilities of default align with the actual default rates. Good calibration means that the predicted risk levels reflect true risks accurately.
+1. **ROC AUC (Receiver Operating Characteristic Area Under the Curve)**: Measures the model's ability to distinguish between classes. It provides an aggregate measure of performance across all classification thresholds.
+2. **Precision-Recall Curve**: Particularly useful in cases of imbalanced classes. It focuses on the performance related to the positive class (default cases).
+3. **Gini Coefficient**: A variant of the AUC, often used in credit scoring, which ranges from 0 to 1. It measures the ability of the model to differentiate between good and bad accounts.
+4. **Kolmogorov-Smirnov (KS) Statistic**: Evaluates the maximum separation between the cumulative distributions of the good and bad accounts. Higher KS values indicate better model performance.
+5. **Model Calibration**: Assesses how well the predicted probabilities of default align with the actual default rates. Good calibration means that the predicted risk levels reflect true risks accurately.
 
 These are the evaluation result from model training and testing. From the evaluation results, there's no indication of overfitting which is good due to similar model performances on both training and testing set.
 | Metric  | Train              | Test               |
@@ -404,7 +403,7 @@ The most important thing is the model calibration which is close to the perfect 
 Credit Scorecard will show how points represented by the bins generated from the predictor variable. Generating the score points will involve scaling calculations from the logistic regression parameters and WoE(s) from grouped attributes inside each characteristics. The formula for calculating the points is:
 $$\text{Attribute Score} = -(WoE_{j}*\beta_{i}+\frac{a}{n}) * Factor + \frac{Offset}{n}$$
 
-We can calculate Factor and Offset by these formulas: 
+Factor act as a scaling point to convert the log of odds of an event into a points. Offset act as a starting credit score. We can calculate Factor and Offset by these formulas: 
 $$\text{pdo} = Factor * \ln{(2)} \text{, therefore } Factor = pdo / \ln{(2)}$$
 $$\text{Offset} = Score - {Factor * \ln(Odds)}$$
 
@@ -414,6 +413,36 @@ Where:
 - $a$ = intercept term from logistic regression
 - $n$ = number of characteristics
 - $k$ = number of groups (of attributes) in each characteristic
+- $pdo$ = "points to double odds" which means how much points increase so that the odds of default halved. Also, you could defined as how much points decrease in order the odds of default doubles.
+- $Odds$ = initial odds of default .
+- $Score$ = score where the odds of default is $Odds$.
+
+In this project we are use the parameter of $pdo$=20, $Odds$=1, and $Score$=500 which means that the odds of default is 1 where the score is 500 and it will doubles if theres a decrease of 20 points. Insert the parameters into the **Scorecard** class by `optbinning`.
+```python
+# Prepare arguments
+...
+scorecard_scaling_method ='pdo_odds'
+scorecard_scaling_method_pdo = 20
+scorecard_scaling_method_odds = 1
+scorecard_scaling_method_scorecard_points = 500
+...
+
+# Instantiate Scorecard Model
+scorecard = Scorecard(
+    binning_process=binning_process,
+    estimator=LogisticRegression(
+        random_state=random_state
+    ), 
+    scaling_method=scorecard_scaling_method,
+    scaling_method_params={
+        'pdo': scorecard_scaling_method_pdo,
+        'odds': scorecard_scaling_method_odds,
+        'scorecard_points': scorecard_scaling_method_scorecard_points
+    },  # FICO score range
+    intercept_based=scorecard_intercept_based
+...
+)
+```
 
 The credit scorecard can be seen at reports\credit_scorecard.csv. Through this scorecard we can see how each attribute are represented in points. This will provide transparency on how customers are acessed for loan approval. If we used it on test data the distribution of the credit points by loan_status will be like this, which shows that almost all of the loan defaulters are those with low credit score.
 <p align="center">
@@ -449,13 +478,24 @@ This report table is a summary of credit level statistics based on the count of 
 
 With this report the management can easily understand the model performance especially on how the model covers good customers and also expected losses of accepting customer with certain credit level and above.
 
+## Conclusion and Recommendation
+From the development of scorecard model, there are 3 keys takeways:
+1. The scorecard model did a good job in acessing the creditworthiness of customers consistently which is shown in the model calibration and distribution of good and bad customers by credit score.
+2. The model can be used on increase efficiency in loan approval process where the process is seamless.
+3. The model also provide transparency which is shown through the generated scorecard which can be used to accessed how the model scored based on the input data.
+
+Recommendations for the potential users of this scorecard model:
+1. Risk Manager: monitors the model’s performance and adjust credit score cutoffs and risk thresholds through coverage table as needed based on current data and market conditions.
+2. Operational Team: Use the automated scoring system to make the credit evaluation process more efficient, ensuring quick and consistent credit approvals for eligible customers.
+3. Marketing Team: Use insights from the credit scoring model to create targeted marketing strategies and customized credit card offers for different customer segments based on their credit risk and financial needs.
+
 ## Deliverables Assets:
-1. 
-2. 
-3. 
+1. **Credit Scorecard Model**: models/woe_lr_scorecard.pkl
+2. **Credit Scorecard**: reports/credit_scorecard.csv
+3. **Credit Scorecard Coverage Table**: reports/coverage_table.csv
 
 ## References 
-1. https://www.amazon.com/Credit-Risk-Scorecards-Implementing-Intelligent/dp/047175451X
+1. Credit Risk Scorecards: Developing and Implementing Intelligent Credit Scoring - *Naeem Siddiqi*
 
 ## Improvement
 - [ ] Refine README.md documentation
