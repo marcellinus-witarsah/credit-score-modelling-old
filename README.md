@@ -490,9 +490,9 @@ Recommendations for the potential users of this scorecard model:
 3. Marketing Team: Use insights from the credit scoring model to create targeted marketing strategies and customized credit card offers for different customer segments based on their credit risk and financial needs.
 
 ## Deliverables Assets:
-1. **Credit Scorecard Model**: models/woe_lr_scorecard.pkl
-2. **Credit Scorecard**: reports/credit_scorecard.csv
-3. **Credit Scorecard Coverage Table**: reports/coverage_table.csv
+1. ![Credit Scorecard Model](models/woe_lr_scorecard.pkl)
+2. ![Credit Scorecard](reports/credit_scorecard.csv)
+3. ![Credit Scorecard Coverage Table](reports/coverage_table.csv)
 
 ## References 
 1. Credit Risk Scorecards: Developing and Implementing Intelligent Credit Scoring - *Naeem Siddiqi*
