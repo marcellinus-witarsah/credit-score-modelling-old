@@ -208,11 +208,12 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
 ### Do certain categories of the categorical predictor variable have higher or lower probabilities of a specific class in the response variable?
 1. `person_home_ownership`: The probability of default is highest among those who still **rent** (32%) and those with **other types** of home ownership (31%).
 <p align="center">
-    <img src="reports/figures/histogram_loan_percent_income_vs_loan_status.png" alt="Histogram loan_percent_income vs loan_status" height="400">
+    <img src="reports/figures/probability_default_by_given_person_home_ownership.png" alt="Probability of Default given person_home_ownership" height="400">
     <p align="center">
-        Figure 16: Histogram loan_percent_income vs loan_status (from Author).
+        Figure 16: Probability of Default given person_home_ownership (from Author).
     </p>
 </p>
+
 2. `loan_intent`: The probability of loan default is highest among those who took out loans for **debt consolidation** (29%), followed by **medical needs** (27%), **home improvement** (26%), **personal loans** (20%), **education loans** (17%), and **ventures** (15%).
 <p align="center">
     <img src="reports/figures/probability_default_by_given_loan_intent.png" alt="Probability of Default given loan_intent" height="400">
@@ -220,6 +221,7 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
         Figure 17: Probability of Default given loan_intent (from Author).
     </p>
 </p>
+
 3. `loan_grade`: The probability of loan default is higher for those who has grade **G** (98%), **F** (71%), **E** (64%), and **D** (59%).
 <p align="center">
     <img src="reports/figures/probability_default_by_given_loan_grade.png" alt="Probability of Default given loan_grade" height="400">
@@ -227,6 +229,7 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
         Figure 18: Probability of Default given loan_grade (from Author).
     </p>
 </p>
+
 4. `cb_person_default_on_file`: The probability of loan default is higher for those who has history of default (38%).
 <p align="center">
     <img src="reports/figures/probability_default_by_given_cb_person_default_on_file.png" alt="Probability of Default given cb_person_default_on_file" height="400">
@@ -243,6 +246,7 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
     </p>
 </p>
 There are multicollinearity amongst numerical predictor variable, such as: `person_age` vs `cb_person_cred_hist_length` and `loan_amnt` vs `loan_percent_income`.
+
 <p align="center">
     <img src="reports/figures/scatter_plot_person_age_vs_cb_person_cred_hist_length.png" alt="Scatter Plot person_age vs cb_person_cred_hist_length" height="400">
     <p align="center">
