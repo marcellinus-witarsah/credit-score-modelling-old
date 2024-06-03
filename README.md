@@ -22,13 +22,16 @@ The development of an advanced credit scoring model will help the bank:
 For this project, the project scope will be:
 1. Data: 
     Utilize Credit Bureau Data sourced from Kaggle. This dataset contains comprehensive information on loan applicants, including their credit history, demographic details, and financial behavior.
-2. Product:
+2. Deliverables:
     - Credit Scorecard Model: Logistic Regression Model trained using a Weight of Evidence.
     - Credit Scorecard: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
 ## Tools and Python Packages
 ## Tools 
+Tools
 1. Code Editor: Visual Studio Code
 2. Python Version: 3.10.13
+3. Version Control: Git (useful for tracking changes and collaborating with team members)
+4. Model Experiment: Jupyter Notebooks (for documenting and sharing code and results interactively)
 
 ### Python Packages 
 1. Data Manipulation Packages used for handling and importing dataset such as `pandas` and `numpy`.
