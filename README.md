@@ -70,10 +70,8 @@ For running the application locally, you can just use `anaconda` or `venv` but m
 ### How is the proportion of the response variable?
 
 The response variable is unbalanced, with good customers (0) making up approximately **78.2%** and bad customers (1) making up about **21.8%**. This imbalance is common in the credit industry, as most users are not expected to default.
-![Proportion of Loan Status](reports/figures/proportion_of_loan_status.png)
-
 <p align="center">
-    <img src="reports/figures/proportion_of_loan_status.png" alt="Proportion of Loan Status" height="500">
+    <img src="reports/figures/proportion_of_loan_status.png" alt="Proportion of Loan Status" height="400">
     <p align="center">
         Figure 2: Proportion of Loan Status (from Author).
     </p>
@@ -81,10 +79,20 @@ The response variable is unbalanced, with good customers (0) making up approxima
 
 ### Are there missing values inside the predictor variables?
 There are missing values in the `person_emp_length` and `loan_int_rate` explanatory variables.
-![Missing Values Barplot](reports/figures/missing_values.png)
+<p align="center">
+    <img src="reports/figures/missing_values.png" alt="Missing Values Barplot" height="400">
+    <p align="center">
+        Figure 3: Missing Values Barplot (from Author).
+    </p>
+</p>
 
 Missing values in `person_emp_length` may indicate unemployment or self-employment. To address this, they are filled with 0 values. Further analysis revealed that most applicants with missing `person_emp_length` have high loan_grade, with approximately 75% falling into grades A and B. This suggests they could be either business owners or unemployed with alternative income sources.
-![Missing Values Inside person_emp_length by loan_grade](reports/figures/missing_values_inside_person_emp_length_by_loan_grade.png)
+<p align="center">
+    <img src="reports/figures/missing_values_inside_person_emp_length_by_loan_grade.png" alt="Missing Values Inside person_emp_length by loan_grade" height="400">
+    <p align="center">
+        Figure 4: Missing Values Inside person_emp_length by loan_grade (from Author).
+    </p>
+</p>
 
 Missing values in `loan_int_rate` may result from human or system errors. Further investigation is needed to determine the cause. Perform mean or median imputation will be suffice.
 
@@ -94,15 +102,40 @@ Missing values in `loan_int_rate` may result from human or system errors. Furthe
 
 **Positive outliers are observed in all predictor variables, resulting in right-skewed distributions. Some of these outliers are explainable**:
 1. `person_income`: High net worth individuals (HNWIs) contribute to the skewness in income distributions.
-![Histogram and Boxplot of person_income](reports/figures/histogram_boxplot_of_person_income.png)
+<p align="center">
+    <img src="reports/figures/histogram_boxplot_of_person_income.png" alt="Histogram and Boxplot of person_income" height="400">
+    <p align="center">
+        Figure 5: Histogram and Boxplot of person_income (from Author).
+    </p>
+</p>
 2. `loan_amnt`: customers with higher incomes may seek larger loan amounts.
-![Histogram and Boxplot of loan_amnt](reports/figures/histogram_boxplot_of_loan_amnt.png)
+<p align="center">
+    <img src="reports/figures/histogram_boxplot_of_loan_amnt.png" alt="Histogram and Boxplot of loan_amnt" height="400">
+    <p align="center">
+        Figure 6: Histogram and Boxplot of loan_amnt (from Author).
+    </p>
+</p>
 3. `loan_int_rate`: Higher loan interest rates may apply to customers perceived as high-risk.
-![Histogram and Boxplot of loan_int_rate](reports/figures/histogram_boxplot_of_loan_int_rate.png)
+<p align="center">
+    <img src="reports/figures/histogram_boxplot_of_loan_int_rate.png" alt="Histogram and Boxplot of loan_int_rate" height="400">
+    <p align="center">
+        Figure 7: Histogram and Boxplot of loan_int_rate (from Author).
+    </p>
+</p>
 4. `loan_percent_income`: Some customers may request loans closer to their income percentage, potentially due to emergencies.
-![Histogram and Boxplot of loan_percent_income](reports/figures/histogram_boxplot_of_loan_percent_income.png)
+<p align="center">
+    <img src="reports/figures/histogram_boxplot_of_loan_percent_income.png" alt="Histogram and Boxplot of loan_percent_income" height="400">
+    <p align="center">
+        Figure 8: Histogram and Boxplot of loan_percent_income (from Author).
+    </p>
+</p>
 5. `cb_person_cred_hist_length`: Some individuals have exceptionally long credit histories.
-![Histogram and Boxplot of cb_person_cred_hist_length](reports/figures/histogram_boxplot_of_cb_person_cred_hist_length.png)
+<p align="center">
+    <img src="reports/figures/histogram_boxplot_of_cb_person_cred_hist_length.png" alt="Histogram and Boxplot of cb_person_cred_hist_length" height="400">
+    <p align="center">
+        Figure 9: Histogram and Boxplot of cb_person_cred_hist_length (from Author).
+    </p>
+</p>
 
 **Anomalies in the data include**:
 1. `person_age`: While the oldest recorded individuals lived to 122 years, some entries in the dataset exceed this limit. To address this, records with `person_age` above 122 are removed, as they represent only a small fraction of the dataset (5 records).
