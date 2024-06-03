@@ -150,39 +150,91 @@ Missing values in `loan_int_rate` may result from human or system errors. Furthe
     | 747   | **123**        | 78000         | RENT                  | 7.0               | VENTURE     | B          | 20000     | NaN           | 0           | 0.26                | N                         | 4                          |
     | 32297 | **144**        | 6000000       | MORTGAGE              | 12.0              | PERSONAL    | C          | 5000      | 12.73         | 0           | 0.00                | N                         | 25                         |
 2. `person_emp_length`: It's impossible for loan applicants aged 21 and 22 to have worked for 123 years. To rectify this, replace these outlier values with the common employment duration for their age range.
-```python
-df[df["person_emp_length"] > df["person_age"]]
-```
-|     | person_age | person_income | person_home_ownership | person_emp_length | loan_intent | loan_grade | loan_amnt | loan_int_rate | loan_status | loan_percent_income | cb_person_default_on_file | cb_person_cred_hist_length |
-|----:|-----------:|--------------:|----------------------:|------------------:|------------:|-----------:|----------:|--------------:|------------:|--------------------:|--------------------------:|---------------------------:|
-|   0 |         22 |         59000 |                  RENT |             123.0 |    PERSONAL |          D |     35000 |         16.02 |           1 |                0.59 |                         Y |                          3 |
-| 210 |         21 |        192000 |              MORTGAGE |             123.0 |     VENTURE |          A |     20000 |          6.54 |           0 |                0.10 |                         N |                          4 |
+    ```python
+    df[df["person_emp_length"] > df["person_age"]]
+    ```
+    |     | person_age | person_income | person_home_ownership | person_emp_length | loan_intent | loan_grade | loan_amnt | loan_int_rate | loan_status | loan_percent_income | cb_person_default_on_file | cb_person_cred_hist_length |
+    |----:|-----------:|--------------:|----------------------:|------------------:|------------:|-----------:|----------:|--------------:|------------:|--------------------:|--------------------------:|---------------------------:|
+    |   0 |         22 |         59000 |                  RENT |             123.0 |    PERSONAL |          D |     35000 |         16.02 |           1 |                0.59 |                         Y |                          3 |
+    | 210 |         21 |        192000 |              MORTGAGE |             123.0 |     VENTURE |          A |     20000 |          6.54 |           0 |                0.10 |                         N |                          4 |
 
 ### How is the occurence of categorical predictor variable?
 The occurences of:
 1. `person_home_ownership` around 90% of loan applications still don't own a property or home where 50% of them is still renting and 40% of them still on mortgage.
-![Countplot of person_home_ownership](reports/figures/countplot_of_person_home_ownership.png)
+<p align="center">
+    <img src="reports/figures/countplot_of_person_home_ownership.png" alt="Countplot of person_home_ownership" height="400">
+    <p align="center">
+        Figure 10: Countplot of person_home_ownership (from Author).
+    </p>
+</p>
 2. `loan_intent` are almost distributed evenly around each category.
-![Countplot of loan_intent](reports/figures/countplot_of_loan_intent.png)
+<p align="center">
+    <img src="reports/figures/countplot_of_loan_intent.png" alt="Countplot of loan_intent" height="400">
+    <p align="center">
+        Figure 11: Countplot of loan_intent (from Author).
+    </p>
+</p>
 3. `loan_grade` around 65% of the loan applicants has a good loan grade, A and B.
-![Countplot of loan_grade](reports/figures/countplot_of_loan_grade.png)
+<p align="center">
+    <img src="reports/figures/countplot_of_loan_grade.png" alt="Countplot of loan_grade" height="400">
+    <p align="center">
+        Figure 12: Countplot of loan_grade (from Author).
+    </p>
+</p>
 4. `cb_person_default_on_file` almost 20% of the customers had history of credit default. 
 ![Countplot of cb_person_default_on_file](reports/figures/countplot_of_cb_person_default_on_file.png)
+<p align="center">
+    <img src="reports/figures/countplot_of_cb_person_default_on_file.png" alt="Countplot of cb_person_default_on_file" height="400">
+    <p align="center">
+        Figure 13: Countplot of cb_person_default_on_file (from Author).
+    </p>
+</p>
 
 ### What is the distribution of the numerical predictor variable across different classes of the response target variable?
 Distributions of `loan_int_rate` and `loan_percent_income` vary based on the response variable, suggesting that higher values of these features correlate with a higher likelihood of default.
-![Histogram loan_int_rate vs loan_status](reports/figures/histogram_loan_int_rate_vs_loan_status.png)
-![Histogram loan_percent_income vs loan_status](reports/figures/histogram_loan_percent_income_vs_loan_status.png)
+<p align="center">
+    <img src="reports/figures/histogram_loan_int_rate_vs_loan_status.png" alt="Histogram loan_int_rate vs loan_status" height="400">
+    <p align="center">
+        Figure 14: Histogram loan_int_rate vs loan_status (from Author).
+    </p>
+</p>
+<p align="center">
+    <img src="reports/figures/histogram_loan_percent_income_vs_loan_status.png" alt="Histogram loan_percent_income vs loan_status" height="400">
+    <p align="center">
+        Figure 15: Histogram loan_percent_income vs loan_status (from Author).
+    </p>
+</p>
 
 ### Do certain categories of the categorical predictor variable have higher or lower probabilities of a specific class in the response variable?
 1. `person_home_ownership`: The probability of default is highest among those who still **rent** (32%) and those with **other types** of home ownership (31%).
 ![Probability of Default given person_home_ownership](reports/figures/probability_default_by_given_person_home_ownership.png)
+<p align="center">
+    <img src="reports/figures/histogram_loan_percent_income_vs_loan_status.png" alt="Histogram loan_percent_income vs loan_status" height="400">
+    <p align="center">
+        Figure 16: Histogram loan_percent_income vs loan_status (from Author).
+    </p>
+</p>
 2. `loan_intent`: The probability of loan default is highest among those who took out loans for **debt consolidation** (29%), followed by **medical needs** (27%), **home improvement** (26%), **personal loans** (20%), **education loans** (17%), and **ventures** (15%).
-![Probability of Default given loan_intent](reports/figures/probability_default_by_given_loan_intent.png)
+<p align="center">
+    <img src="reports/figures/probability_default_by_given_loan_intent.png" alt="Probability of Default given loan_intent" height="400">
+    <p align="center">
+        Figure 17: Probability of Default given loan_intent (from Author).
+    </p>
+</p>
 3. `loan_grade`: The probability of loan default is higher for those who has grade **G** (98%), **F** (71%), **E** (64%), and **D** (59%).
-![Probability of Default given loan_grade](reports/figures/probability_default_by_given_loan_grade.png)
+<p align="center">
+    <img src="reports/figures/probability_default_by_given_loan_grade.png" alt="Probability of Default given loan_grade" height="400">
+    <p align="center">
+        Figure 18: Probability of Default given loan_grade (from Author).
+    </p>
+</p>
 4. `cb_person_default_on_file`: The probability of loan default is higher for those who has history of default (38%).
-![Probability of Default given cb_person_default_on_file](reports/figures/probability_default_by_given_cb_person_default_on_file.png)
+<p align="center">
+    <img src="reports/figures/probability_default_by_given_cb_person_default_on_file.png" alt="Probability of Default given cb_person_default_on_file" height="400">
+    <p align="center">
+        Figure 19: Probability of Default given cb_person_default_on_file (from Author).
+    </p>
+</p>
 
 ### How is the correlation amongst numerical predictor variable? (Multicollinearity)
 ![Correlation Matrix Heatmap](reports/figures/correlation_matrix_heatmap.png)
