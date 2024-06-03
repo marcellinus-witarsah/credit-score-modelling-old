@@ -1,10 +1,9 @@
 
 # Credit Scorecard Modelling 
-![Credit Score Image](https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg)
 <p align="center">
     <img src="https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg" alt="Credit Score Image" height="500">
     <p align="center">
-        Figure 1: Credit Score Illustration (<a href="https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg">source</a>).
+        Figure 1: Credit Score Illustration (<a href="https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg">Source</a>).
     </p>
 </p>
 ## Business Context
@@ -72,6 +71,13 @@ For running the application locally, you can just use `anaconda` or `venv` but m
 
 The response variable is unbalanced, with good customers (0) making up approximately **78.2%** and bad customers (1) making up about **21.8%**. This imbalance is common in the credit industry, as most users are not expected to default.
 ![Proportion of Loan Status](reports/figures/proportion_of_loan_status.png)
+
+<p align="center">
+    <img src="reports/figures/proportion_of_loan_status.png" alt="Proportion of Loan Status" height="500">
+    <p align="center">
+        Figure 2: Proportion of Loan Status (from Author).
+    </p>
+</p>
 
 ### Are there missing values inside the predictor variables?
 There are missing values in the `person_emp_length` and `loan_int_rate` explanatory variables.
