@@ -207,7 +207,6 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
 
 ### Do certain categories of the categorical predictor variable have higher or lower probabilities of a specific class in the response variable?
 1. `person_home_ownership`: The probability of default is highest among those who still **rent** (32%) and those with **other types** of home ownership (31%).
-![Probability of Default given person_home_ownership](reports/figures/probability_default_by_given_person_home_ownership.png)
 <p align="center">
     <img src="reports/figures/histogram_loan_percent_income_vs_loan_status.png" alt="Histogram loan_percent_income vs loan_status" height="400">
     <p align="center">
@@ -237,10 +236,25 @@ Distributions of `loan_int_rate` and `loan_percent_income` vary based on the res
 </p>
 
 ### How is the correlation amongst numerical predictor variable? (Multicollinearity)
-![Correlation Matrix Heatmap](reports/figures/correlation_matrix_heatmap.png)
+<p align="center">
+    <img src="reports/figures/correlation_matrix_heatmap.png" alt="Correlation Matrix Heatmap" height="400">
+    <p align="center">
+        Figure 20: Correlation Matrix Heatmap (from Author).
+    </p>
+</p>
 There are multicollinearity amongst numerical predictor variable, such as: `person_age` vs `cb_person_cred_hist_length` and `loan_amnt` vs `loan_percent_income`.
-![Scatter Plot person_age vs cb_person_cred_hist_length](reports/figures/scatter_plot_person_age_vs_cb_person_cred_hist_length.png)
-![Scatter Plot loan_amnt vs loan_percent_income](reports/figures/scatter_plot_loan_amnt_vs_loan_percent_income.png)
+<p align="center">
+    <img src="reports/figures/scatter_plot_person_age_vs_cb_person_cred_hist_length.png" alt="Scatter Plot person_age vs cb_person_cred_hist_length" height="400">
+    <p align="center">
+        Figure 21: Scatter Plot person_age vs cb_person_cred_hist_length (from Author).
+    </p>
+</p>
+<p align="center">
+    <img src="reports/figures/scatter_plot_loan_amnt_vs_loan_percent_income.png" alt="Scatter Plot loan_amnt vs loan_percent_income" height="400">
+    <p align="center">
+        Figure 22: Scatter Plot loan_amnt vs loan_percent_income (from Author).
+    </p>
+</p>
 
 ## Data Preprocessing
 The whole process of data processing involve 4 steps: 
@@ -283,8 +297,12 @@ Example results of calculting the Weight of Evidence is shown below (using `optb
 |      8 |              Missing |     0 |  0.000000 |         0 |     0 |   0.000000 |       0.0 | 0.000000 | 0.000000 |
 | Totals |                      | 22806 |  1.000000 |     17831 |  4975 |   0.218144 |           | 0.576370 | 0.067146 |
 
-
-![WoE Plot Person Income](reports/figures/woe_plot_person_income.png)
+<p align="center">
+    <img src="reports/figures/woe_plot_person_income.png" alt="WoE Plot Person Income" height="400">
+    <p align="center">
+        Figure 23: WoE Plot Person Income (from Author).
+    </p>
+</p>
 
 This plot shows that the higher the person income the higher the WoE that proves that the person is a Good Customer.
 
@@ -364,8 +382,18 @@ These are the evaluation result from model training and testing. From the evalua
 | ks      | 0.6375544257093894 | 0.6433699790912927 |
 
 Take a look at the model calibration
-![Train Model Calibration](reports/figures/calibration_plot_train.png)
-![Test Model Calibration](reports/figures/calibration_plot_test.png)
+<p align="center">
+    <img src="reports/figures/calibration_plot_train.png" alt="Train Model Calibration" height="400">
+    <p align="center">
+        Figure 24: Train Model Calibration (from Author).
+    </p>
+</p>
+<p align="center">
+    <img src="reports/figures/calibration_plot_test.png" alt="Test Model Calibration" height="400">
+    <p align="center">
+        Figure 25: Test Model Calibration (from Author).
+    </p>
+</p>
 The most important thing is the model calibration which is close to the perfect calibrated line. Why is it so important? it ensures all business decision makers that the model estimated probabilities aligns with the actual default rate in the population of customers. For example, if the model is perfectly calibrated and the model predict that chance of someone default is 10% and the bank trust it. For every loan given to all customers with predicted probability of default 10%, then they expect on average that 10% of all customers will default.
 
 ## Credit Scorecard and Points Scaling
@@ -384,7 +412,12 @@ Where:
 - $k$ = number of groups (of attributes) in each characteristic
 
 The credit scorecard can be seen at reports\credit_scorecard.csv. Through this scorecard we can see how each attribute are represented in points. This will provide transparency on how customers are acessed for loan approval. If we used it on test data the distribution of the credit points by loan_status will be like this, which shows that almost all of the loan defaulters are those with low credit score.
-![Distribution of Credit Scores by loan_status](reports/figures/distribution_of_credit_scores_by_loan_status.png)
+<p align="center">
+    <img src="reports/figures/distribution_of_credit_scores_by_loan_status.png" alt="Distribution of Credit Scores by loan_status" height="400">
+    <p align="center">
+        Figure 26: Distribution of Credit Scores by loan_status (from Author).
+    </p>
+</p>
 
 ## Extra: Report to Management about The Credit Scorecard Modelling
 This is only my own thoughts on what the management might want to know about the model.
