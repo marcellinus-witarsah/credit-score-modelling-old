@@ -25,6 +25,7 @@ For this project, the project scope will be:
 2. Deliverables:
     - Credit Scorecard Model: Logistic Regression Model trained using a Weight of Evidence.
     - Credit Scorecard: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
+    - Credit Scorecard Coverage Table: Table containing model coverage on good customers and bad customers at each credit levels. 
 
 ## Tools and Python Packages
 ### Tools 
@@ -64,7 +65,7 @@ For running the application locally, you can just use `anaconda` or `venv` but m
 ## Exploratory Data Analysis
 ### How is the proportion of the response variable?
 
-The response variable is unbalanced, with Good Customers (0) making up approximately **78.2%** and Bad Customers (1) making up about **21.8%**. This imbalance is common in the credit industry, as most users are not expected to default.
+The response variable is unbalanced, with good customers (0) making up approximately **78.2%** and bad customers (1) making up about **21.8%**. This imbalance is common in the credit industry, as most users are not expected to default.
 ![Proportion of Loan Status](reports/figures/proportion_of_loan_status.png)
 
 ### Are there missing values inside the predictor variables?
@@ -83,11 +84,11 @@ Missing values in `loan_int_rate` may result from human or system errors. Furthe
 **Positive outliers are observed in all predictor variables, resulting in right-skewed distributions. Some of these outliers are explainable**:
 1. `person_income`: High net worth individuals (HNWIs) contribute to the skewness in income distributions.
 ![Histogram and Boxplot of person_income](reports/figures/histogram_boxplot_of_person_income.png)
-2. `loan_amnt`: Borrowers with higher incomes may seek larger loan amounts.
+2. `loan_amnt`: customers with higher incomes may seek larger loan amounts.
 ![Histogram and Boxplot of loan_amnt](reports/figures/histogram_boxplot_of_loan_amnt.png)
 3. `loan_int_rate`: Higher loan interest rates may apply to customers perceived as high-risk.
 ![Histogram and Boxplot of loan_int_rate](reports/figures/histogram_boxplot_of_loan_int_rate.png)
-4. `loan_percent_income`: Some borrowers may request loans closer to their income percentage, potentially due to emergencies.
+4. `loan_percent_income`: Some customers may request loans closer to their income percentage, potentially due to emergencies.
 ![Histogram and Boxplot of loan_percent_income](reports/figures/histogram_boxplot_of_loan_percent_income.png)
 5. `cb_person_cred_hist_length`: Some individuals have exceptionally long credit histories.
 ![Histogram and Boxplot of cb_person_cred_hist_length](reports/figures/histogram_boxplot_of_cb_person_cred_hist_length.png)
@@ -149,7 +150,7 @@ There are multicollinearity amongst numerical predictor variable, such as: `pers
 ## Data Preprocessing
 The whole process of data processing involve 4 steps: 
     1. Data splitting
-    2. Weight of Evidence and Information Value
+    2. Weight of Evidence (WoE) and Information Value (IV)
     3. Feature Selection 
     4. Data Transformation (Mapping predictors value with the Weight of Evidence values). 
 
@@ -168,8 +169,8 @@ WoE measures how good each grouped bins (inside a predictor variable) in predict
 $$\text{WoE} = \ln \left( \frac{\text{Proportion of Good}}{\text{Proportion of Bad}} \right)$$
 
 Where:
-- $\text{Proportion of Good}$ is the proportion of customers who paid back (**Good Customers**).
-- $\text{Proportion of Bad}$ is the proportion of default customers (**Bad Customers**).
+- $\text{Proportion of Good}$ is the proportion of **good customers**.
+- $\text{Proportion of Bad}$ is the proportion of **bad customers**.
 - $\text{ln}$ denotes the natural logarithm.
 
 Example results of calculting the Weight of Evidence is shown below (using `optbinning`)
@@ -270,7 +271,7 @@ These are the evaluation result from model training and testing. From the evalua
 Take a look at the model calibration
 ![Train Model Calibration](reports/figures/calibration_plot_train.png)
 ![Test Model Calibration](reports/figures/calibration_plot_test.png)
-The most important thing is the model calibration which is close to the perfect calibrated line. Why is it so important? it ensures all business decision makers that the model estimated probabilities aligns with the actual default rate in the population of borrowers. For example, if the model is perfectly calibrated and the model predict that chance of someone default is 10% and the bank trust it. For every loan given to all borrowers with predicted probability of default 10%, then they expect on average that 10% of all borrowers will default.
+The most important thing is the model calibration which is close to the perfect calibrated line. Why is it so important? it ensures all business decision makers that the model estimated probabilities aligns with the actual default rate in the population of customers. For example, if the model is perfectly calibrated and the model predict that chance of someone default is 10% and the bank trust it. For every loan given to all customers with predicted probability of default 10%, then they expect on average that 10% of all customers will default.
 
 ## Credit Scorecard and Points Scaling
 Credit Scorecard will show how points represented by the bins generated from the predictor variable. Generating the score points will involve scaling calculations from the logistic regression parameters and WoE(s) from grouped attributes inside each characteristics. The formula for calculating the points is:
@@ -292,7 +293,7 @@ The credit scorecard can be seen at reports\credit_scorecard.csv. Through this s
 
 ## Extra: Report to Management about The Credit Scorecard Modelling
 This is only my own thoughts on what the management might want to know about the model.
-|   | Credit Level | Credit Lower Bound | Credit Upper Bound | Credit Description | Customers | Customers Rate | Good Customers | Bad Customers | Default Rate | Good Customers Coverage | Loss Coverage |
+|   | Credit Level | Credit Lower Bound | Credit Upper Bound | Credit Description | Customers | Customers Rate | good customers | bad customers | Default Rate | good customers Coverage | Loss Coverage |
 |--:|-------------:|-------------------:|-------------------:|-------------------:|----------:|---------------:|---------------:|--------------:|-------------:|------------------------:|--------------:|
 | 0 |            1 |               -inf |              350.0 |          Very Poor |       5.0 |       0.051151 |            0.0 |           5.0 |   100.000000 |                1.000000 |      0.218210 |
 | 1 |            2 |              350.0 |              400.0 |               Poor |     116.0 |       1.186701 |            0.0 |         116.0 |   100.000000 |                1.000000 |      0.217810 |
@@ -303,15 +304,15 @@ This is only my own thoughts on what the management might want to know about the
 | 6 |            7 |              600.0 |              650.0 |          Very Good |    2421.0 |      24.767263 |         2350.0 |          71.0 |     2.932672 |                0.336823 |      0.026843 |
 | 7 |            8 |              650.0 |              700.0 |          Excellent |     224.0 |       2.291560 |          224.0 |           0.0 |     0.000000 |                0.029312 |      0.000000 |
 
-This report table is a summary of credit level statistics based on the count of Good Customer and Bad Customers inside each credit level.
+This report table is a summary of credit level statistics based on the count of Good Customer and bad customers inside each credit level.
 1. **Credit Level**: This column indicates the different levels of creditworthiness.
 2. **Credit Lower Bound and Credit Upper Bound**: These columns define the score ranges for each credit level. For example, the "Very Poor" credit level ranges from negative infinity (or the lowest possible score) up to 350.
 3. **Credit Description**: This column provides a description or label for each credit level.
 4. **Customers**: The number of customers or individuals falling within each credit level.
 5. **Customers Rate**: This column might represent the percentage of customers in each credit level relative to the total number of customers.
-6. **Good Customers and Bad Customers**: The number of customers within each credit level who are classified as "Good" (low credit risk) or "Bad" (high credit risk).
+6. **good customers and bad customers**: The number of customers within each credit level who are classified as "Good" (low credit risk) or "Bad" (high credit risk).
 7. **Default Rate**: This column indicates the percentage of customers within each credit level who have defaulted on their obligations.
-8. **Good Customers Coverage**: Cumulative percentage of "Good" customers covered within each credit level start from the highest credit level.
+8. **good customers Coverage**: Cumulative percentage of "Good" customers covered within each credit level start from the highest credit level.
 9. **Loss Coverage**: cumulative percentage of exposed losses that we are willing to accept for a given loan, starting from a certain credit level until the highes credit level.
 
 With this report the management can easily understand the model performance especially on how the model covers good customers and also expected losses of accepting customer with certain credit level and above.
