@@ -449,6 +449,11 @@ This report table is a summary of credit level statistics based on the count of 
 
 With this report the management can easily understand the model performance especially on how the model covers good customers and also expected losses of accepting customer with certain credit level and above.
 
+## Deliverables Assets:
+1. 
+2. 
+3. 
+
 ## References 
 1. https://www.amazon.com/Credit-Risk-Scorecards-Implementing-Intelligent/dp/047175451X
 
