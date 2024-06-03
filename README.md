@@ -2,14 +2,21 @@
 # Credit Scorecard Modelling 
 ![Credit Score Image](https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg)
 
-## Background
-A leading Bank XYZ wants to improve its loan approval process. Currently, this process is done manually, which is slow and inconsistent. The bank wants to automate credit scoring to speed up approvals and reduce errors while managing the risk of loan defaults. To solve this, the bank plans to use automated credit scoring, which leverage machine learning model to make better decisions.
+## Business Context
 
-The main goal of this project is to create a credit scorecard model that is able to calculate the credit score of applicants. This will help the bank:
-1. Automate Loan Approvals: Make the process faster and more efficient.
-2. Manage Risk Better: Accurately identify high-risk applicants to minimize defaults.
-3. Standardize Decisions: Ensure consistent and objective loan approvals.
-4. Grow the Business: Approve more loans to creditworthy customers.
+Increased competition and pressures for revenue generation have led Bank XYZ to seek effective ways to find and attract new creditworthy customers while controlling their losses. Bank XYZ has launched an aggressive and massive campaign to reach a larger and more diverse group of potential customers, including those who may not have previously considered applying for a loan. This increase in the number of applicants means a greater proportion may have higher risk profiles. Currently, onboarding these new potential customers involves a manual credit risk assessment process, which is slow and inconsistent, often leading customers to seek loans from other banks.
+
+Bank XYZ acknowledges this problem and aims to automate credit scoring to reduce turnaround times for customers. Additionally, customer service excellence demands that this automated process minimizes the denial of credit to creditworthy customers while filtering out as many potentially delinquent ones as possible. Furthermore, they want to provide a personalized experience or deals to each customer based on their credit scores. Therefore, an advanced credit scorecard model needs to be developed to tackle these issues and provide expandability to users such as risk managers, operational managers, and marketing managers.
+
+## Business Objectives
+
+The development of an advanced credit scoring model will help the bank:
+
+1. **Automate Loan Approvals**: Make the loan approval process faster and more efficient.
+2. **Manage Risk Better**: Accurately identify high-risk applicants to minimize defaults.
+3. **Standardize Decisions**: Ensure consistent and objective loan approval decisions.
+4. **Grow the Business**: Approve more loans to creditworthy customers to expand the customer base.
+5. **Provide Personalized Experience**: Deliver personalized experiences and offers to both new and existing customers to enhance customer retention.
     
 ## Project Scope
 For this project, the project scope will be:
