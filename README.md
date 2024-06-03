@@ -25,9 +25,9 @@ For this project, the project scope will be:
 2. Deliverables:
     - Credit Scorecard Model: Logistic Regression Model trained using a Weight of Evidence.
     - Credit Scorecard: Create a scoring system derived from the model, which translates the predictive output into a standardized credit score. The calculation is done using the "points to double odds" method.
+
 ## Tools and Python Packages
-## Tools 
-Tools
+### Tools 
 1. Code Editor: Visual Studio Code
 2. Python Version: 3.10.13
 3. Version Control: Git (useful for tracking changes and collaborating with team members)
