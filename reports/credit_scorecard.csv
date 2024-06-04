@@ -1,67 +1,67 @@
 Variable,Bin,Points
 person_income,"(-inf, 22840.00)",0.0
 person_income,"[22840.00, 34990.00)",26.221544952055353
-person_income,"[34990.00, 39930.00)",39.53357252721076
-person_income,"[39930.00, 59982.00)",47.464580410555186
-person_income,"[59982.00, 79942.50)",58.28645250841459
-person_income,"[79942.50, 89325.00)",68.27005902396127
+person_income,"[34990.00, 39930.00)",39.533572527210765
+person_income,"[39930.00, 59982.00)",47.46458041055519
+person_income,"[59982.00, 79942.50)",58.2864525084146
+person_income,"[79942.50, 89325.00)",68.27005902396128
 person_income,"[89325.00, inf)",74.3402186126977
-person_income,Special,46.614775226346964
-person_income,Missing,46.614775226346964
-person_home_ownership,['OWN'],48.024647145023685
-person_home_ownership,['MORTGAGE'],31.338391597741953
+person_income,Special,46.61477522634697
+person_income,Missing,46.61477522634697
+person_home_ownership,['OWN'],48.02464714502365
+person_home_ownership,['MORTGAGE'],31.338391597741932
 person_home_ownership,['RENT' 'OTHER'],0.0
-person_home_ownership,Special,13.551648108317025
-person_home_ownership,Missing,13.551648108317025
+person_home_ownership,Special,13.551648108317018
+person_home_ownership,Missing,13.551648108317018
 person_emp_length,"(-inf, 0.50)",0.0
-person_emp_length,"[0.50, 1.50)",0.8407466668337946
-person_emp_length,"[1.50, 2.50)",1.0369443777861491
-person_emp_length,"[2.50, 4.50)",3.930334994534448
-person_emp_length,"[4.50, 5.50)",5.108914195082143
-person_emp_length,"[5.50, 7.50)",5.214434557191197
-person_emp_length,"[7.50, 11.50)",5.837325466531169
-person_emp_length,"[11.50, inf)",7.458419228369102
-person_emp_length,Special,3.301745794217311
-person_emp_length,Missing,3.301745794217311
-loan_intent,['VENTURE'],33.211879130122114
-loan_intent,['EDUCATION'],25.784245148624805
-loan_intent,['PERSONAL'],18.407014250268773
-loan_intent,['HOMEIMPROVEMENT'],4.120938928779502
+person_emp_length,"[0.50, 1.50)",0.8407466668338017
+person_emp_length,"[1.50, 2.50)",1.0369443777861562
+person_emp_length,"[2.50, 4.50)",3.930334994534462
+person_emp_length,"[4.50, 5.50)",5.108914195082157
+person_emp_length,"[5.50, 7.50)",5.214434557191218
+person_emp_length,"[7.50, 11.50)",5.83732546653119
+person_emp_length,"[11.50, inf)",7.458419228369131
+person_emp_length,Special,3.301745794217325
+person_emp_length,Missing,3.301745794217325
+loan_intent,['VENTURE'],33.21187913012207
+loan_intent,['EDUCATION'],25.784245148624763
+loan_intent,['PERSONAL'],18.407014250268745
+loan_intent,['HOMEIMPROVEMENT'],4.120938928779495
 loan_intent,['MEDICAL'],1.9397336002574477
 loan_intent,['DEBTCONSOLIDATION'],0.0
-loan_intent,Special,13.788376298524817
-loan_intent,Missing,13.788376298524817
-loan_grade,['A'],89.29459120134732
-loan_grade,['B'],70.27888410467516
-loan_grade,['C'],61.77699390002966
+loan_intent,Special,13.788376298524803
+loan_intent,Missing,13.788376298524803
+loan_grade,['A'],89.29459120134737
+loan_grade,['B'],70.2788841046752
+loan_grade,['C'],61.77699390002969
 loan_grade,['D' 'E' 'F' 'G'],0.0
-loan_grade,Special,58.65713114594046
-loan_grade,Missing,58.65713114594046
-loan_amnt,"(-inf, 3475.00)",11.993232713582017
-loan_amnt,"[3475.00, 5062.50)",14.028526217466087
-loan_amnt,"[5062.50, 6087.50)",19.021063693986477
-loan_amnt,"[6087.50, 7387.50)",17.490786224913506
-loan_amnt,"[7387.50, 8112.50)",15.569868175287574
-loan_amnt,"[8112.50, 10587.50)",14.583777626719595
-loan_amnt,"[10587.50, 14487.50)",11.819596729781125
-loan_amnt,"[14487.50, 18087.50)",7.349552648797619
+loan_grade,Special,58.65713114594049
+loan_grade,Missing,58.65713114594049
+loan_amnt,"(-inf, 3475.00)",11.993232713582046
+loan_amnt,"[3475.00, 5062.50)",14.028526217466116
+loan_amnt,"[5062.50, 6087.50)",19.021063693986534
+loan_amnt,"[6087.50, 7387.50)",17.49078622491355
+loan_amnt,"[7387.50, 8112.50)",15.56986817528761
+loan_amnt,"[8112.50, 10587.50)",14.58377762671963
+loan_amnt,"[10587.50, 14487.50)",11.819596729781153
+loan_amnt,"[14487.50, 18087.50)",7.3495526487976335
 loan_amnt,"[18087.50, 22150.00)",3.1626997850006404
 loan_amnt,"[22150.00, inf)",0.0
-loan_amnt,Special,11.972256741729616
-loan_amnt,Missing,11.972256741729616
-loan_int_rate,"(-inf, 6.10)",9.246612728317075
-loan_int_rate,"[6.10, 7.50)",7.619173237724723
-loan_int_rate,"[7.50, 7.89)",7.3465271342074985
-loan_int_rate,"[7.89, 9.64)",6.902230145755915
-loan_int_rate,"[9.64, 11.27)",5.952468341190425
-loan_int_rate,"[11.27, 11.94)",5.769099370484504
-loan_int_rate,"[11.94, 12.72)",5.448459173403052
-loan_int_rate,"[12.72, 13.61)",4.949685998528608
-loan_int_rate,"[13.61, 14.37)",4.123448958759369
-loan_int_rate,"[14.37, 15.28)",1.7309494541591022
+loan_amnt,Special,11.972256741729645
+loan_amnt,Missing,11.972256741729645
+loan_int_rate,"(-inf, 6.10)",9.246612728317032
+loan_int_rate,"[6.10, 7.50)",7.619173237724674
+loan_int_rate,"[7.50, 7.89)",7.346527134207456
+loan_int_rate,"[7.89, 9.64)",6.90223014575588
+loan_int_rate,"[9.64, 11.27)",5.9524683411903965
+loan_int_rate,"[11.27, 11.94)",5.769099370484469
+loan_int_rate,"[11.94, 12.72)",5.448459173403016
+loan_int_rate,"[12.72, 13.61)",4.9496859985285795
+loan_int_rate,"[13.61, 14.37)",4.123448958759347
+loan_int_rate,"[14.37, 15.28)",1.730949454159095
 loan_int_rate,"[15.28, inf)",0.0
-loan_int_rate,Special,4.9451774169716245
-loan_int_rate,Missing,4.9451774169716245
+loan_int_rate,Special,4.945177416971596
+loan_int_rate,Missing,4.945177416971596
 loan_percent_income,"(-inf, 0.05)",89.55285425999703
 loan_percent_income,"[0.05, 0.07)",83.32575796075412
 loan_percent_income,"[0.07, 0.13)",81.79879870852344
@@ -75,6 +75,6 @@ loan_percent_income,"[0.36, inf)",0.0
 loan_percent_income,Special,63.00855925880935
 loan_percent_income,Missing,63.00855925880935
 cb_person_default_on_file,['N'],0.0
-cb_person_default_on_file,['Y'],1.1204870995681375
-cb_person_default_on_file,Special,0.24212711823099653
-cb_person_default_on_file,Missing,0.24212711823099653
+cb_person_default_on_file,['Y'],1.1204870995681588
+cb_person_default_on_file,Special,0.24212711823100364
+cb_person_default_on_file,Missing,0.24212711823100364
