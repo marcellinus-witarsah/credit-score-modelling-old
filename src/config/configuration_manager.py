@@ -6,6 +6,7 @@ from src.constants import PARAMS_FILE_PATH
 from src.constants import SCHEMA_FILE_PATH
 from src.entities.config_entity import DataIngestionConfig
 from src.entities.config_entity import DataValidationConfig
+from src.entities.config_entity import DataPreprocessingConfig
 
 
 class ConfigurationManager:
@@ -75,3 +76,27 @@ class ConfigurationManager:
             schema=schema,
         )
         return data_validation_config
+
+    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
+        """
+        Get configuration for data preprocessing.
+
+        Returns:
+            DataPreprocessingConfig: Configuration for data preprocessing.
+        """
+        config = self.config.data_preprocessing
+        params = self.params.data_preprocessing
+
+        create_directories([config.root_dir])
+
+        data_preprocessing_config = DataPreprocessingConfig(
+            root_dir=config.root_dir,
+            source_path=config.source_path,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+            target_column=params.split_data.target_column,
+            test_size=params.split_data.test_size,
+            shuffle=params.split_data.shuffle,
+            random_state=params.split_data.random_state,
+        )
+        return data_preprocessing_config

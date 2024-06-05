@@ -1,3 +1,10 @@
+data_preprocessing:
+  split_data:
+    target_column: 'loan_status'
+    test_size: 0.2
+    shuffle: True
+    random_state: 42
+
 BinningProcess:
   categorical_variables: ['person_home_ownership', 'loan_intent', 'loan_grade', 'cb_person_default_on_file']
   selection_criteria:
