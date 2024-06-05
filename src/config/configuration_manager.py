@@ -7,6 +7,7 @@ from src.constants import SCHEMA_FILE_PATH
 from src.entities.config_entity import DataIngestionConfig
 from src.entities.config_entity import DataValidationConfig
 from src.entities.config_entity import DataPreprocessingConfig
+from src.entities.config_entity import ModelTrainingConfig
 
 
 class ConfigurationManager:
@@ -100,3 +101,26 @@ class ConfigurationManager:
             random_state=params.split_data.random_state,
         )
         return data_preprocessing_config
+
+    def get_model_training_config(self) -> ModelTrainingConfig:
+        """
+        Get configuration for model training.
+
+        Returns:
+            ModelTrainingConfig: Configuration for model training.
+        """
+        config = self.config.model_training
+        params = self.params
+
+        create_directories([config.root_dir])
+
+        model_training_config = ModelTrainingConfig(
+            root_dir=config.root_dir,
+            train_data_path=config.train_data_path,
+            model_path=config.model_path,
+            target_column=params.data_preprocessing.split_data.target_column,
+            BinningProcess=params.BinningProcess,
+            LogisticRegression=params.LogisticRegression,
+            Scorecard=params.Scorecard,
+        )
+        return model_training_config

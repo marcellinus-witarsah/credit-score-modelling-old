@@ -60,3 +60,27 @@ class DataPreprocessingConfig:
     test_size: float
     shuffle: bool
     random_state: int
+
+
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    """
+    Data class for storing model training configuration.
+
+    Attributes:
+        root_dir (Path): Root directory for model training.
+        train_data_path (Path): Path to the training data.
+        model_path (Path): Path to save the trained model.
+        target_column (str): The name of the target column.
+        BinningProcess (dict): Configuration for the binning process.
+        LogisticRegression (dict): Configuration for logistic regression.
+        Scorecard (dict): Configuration for the scorecard.
+    """
+
+    root_dir: Path
+    train_data_path: Path
+    model_path: Path
+    target_column: str
+    BinningProcess: dict
+    LogisticRegression: dict
+    Scorecard: dict
