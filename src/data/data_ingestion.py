@@ -124,6 +124,7 @@ class DataIngestion:
                 if isinstance(self.config.source_path, list)
                 else [self.config.source_path]
             )
+            logger.info("Ingest data")
             strategy.ingest_data(paths, self.config.target_path)
             logger.info(
                 f"Successfully ingested data using {strategy.__class__.__name__}"
