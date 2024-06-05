@@ -8,7 +8,7 @@ data_ingestion:
 
 data_validation:
   root_dir: artifacts/data_validation
-  source_path: rtifacts/data_ingestion/credit_risk_dataset.csv
+  source_path: artifacts/data_ingestion/credit_risk_dataset.csv
   STATUS_FILE: artifacts/data_validation/status.txt
 
 data_transformation:
