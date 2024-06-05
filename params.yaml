@@ -1,0 +1,17 @@
+BinningProcess:
+  categorical_variables: ['person_home_ownership', 'loan_intent', 'loan_grade', 'cb_person_default_on_file']
+  selection_criteria:
+    iv:
+      min: 0.02
+      max: 1
+
+LogisticRegression:
+  random_state: 42
+
+Scorecard:
+  scaling_method: 'pdo_odds'
+  scaling_method_params:
+    pdo: 20
+    odds: 1
+    scorecard_points: 500
+  intercept_based: True
