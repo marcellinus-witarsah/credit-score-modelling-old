@@ -1,0 +1,15 @@
+artifact_uri: file:///d:/Documents/GitHub/credit_scorecard_practice/mlruns/0/fd7bdc93ee834cebb48dccc1605a3c01/artifacts
+end_time: 1717640607605
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fd7bdc93ee834cebb48dccc1605a3c01
+run_name: amazing-stag-664
+run_uuid: fd7bdc93ee834cebb48dccc1605a3c01
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717640607305
+status: 4
+tags: []
+user_id: marcellinus-witarsah

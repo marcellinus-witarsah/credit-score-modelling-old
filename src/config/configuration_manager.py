@@ -8,6 +8,7 @@ from src.entities.config_entity import DataIngestionConfig
 from src.entities.config_entity import DataValidationConfig
 from src.entities.config_entity import DataPreprocessingConfig
 from src.entities.config_entity import ModelTrainingConfig
+from src.entities.config_entity import ModelInferenceConfig
 
 
 class ConfigurationManager:
@@ -124,3 +125,25 @@ class ConfigurationManager:
             Scorecard=params.Scorecard,
         )
         return model_training_config
+
+    def get_model_inference_config(self) -> ModelInferenceConfig:
+        """
+        Get the configuration for model inference.
+
+        This method reads the model inference configuration from the config
+        file and prepares the directories required for model inference.
+
+        Returns:
+            ModelInferenceConfig: An instance of ModelInferenceConfig containing
+            the root directory and model path for model inference.
+        """
+        config = self.config.model_inference
+
+        create_directories([config.root_dir])
+
+        model_inference_config = ModelInferenceConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+        )
+
+        return model_inference_config

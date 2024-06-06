@@ -84,3 +84,17 @@ class ModelTrainingConfig:
     BinningProcess: dict
     LogisticRegression: dict
     Scorecard: dict
+
+
+@dataclass(frozen=True)
+class ModelInferenceConfig:
+    """
+    Data class for storing model inference configuration.
+
+    Attributes:
+        root_dir (Path): The root directory for model inference artifacts.
+        model_path (Path): The path to the model file.
+    """
+
+    root_dir: Path
+    model_path: Path
