@@ -68,22 +68,28 @@ class ModelTrainingConfig:
     Data class for storing model training configuration.
 
     Attributes:
-        root_dir (Path): Root directory for model training.
-        train_data_path (Path): Path to the training data.
-        model_path (Path): Path to save the trained model.
+        root_dir (str): Root directory for model training.
+        model_path (str): Path to save the trained model.
+        train_data_path (str): Path to the training data.
+        test_data_path (str): Path to the test data.
+        experiment_name (str): Name of the experiment.
+        run_name (str): Name of the run.
         target_column (str): The name of the target column.
-        BinningProcess (dict): Configuration for the binning process.
-        LogisticRegression (dict): Configuration for logistic regression.
-        Scorecard (dict): Configuration for the scorecard.
+        binning_process (dict): Configuration for the binning process.
+        logistic_regression (dict): Configuration for logistic regression.
+        scorecard (dict): Configuration for the scorecard.
     """
 
-    root_dir: Path
-    train_data_path: Path
-    model_path: Path
+    root_dir: str
+    model_path: str
+    train_data_path: str
+    test_data_path: str
+    experiment_name: str
+    run_name: str
     target_column: str
-    BinningProcess: dict
-    LogisticRegression: dict
-    Scorecard: dict
+    binning_process: dict
+    logistic_regression: dict
+    scorecard: dict
 
 
 @dataclass(frozen=True)

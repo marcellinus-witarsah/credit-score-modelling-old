@@ -112,17 +112,21 @@ class ConfigurationManager:
         """
         config = self.config.model_training
         params = self.params
+        schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
 
         model_training_config = ModelTrainingConfig(
             root_dir=config.root_dir,
-            train_data_path=config.train_data_path,
             model_path=config.model_path,
-            target_column=params.data_preprocessing.split_data.target_column,
-            BinningProcess=params.BinningProcess,
-            LogisticRegression=params.LogisticRegression,
-            Scorecard=params.Scorecard,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+            experiment_name=config.experiment_name,
+            run_name=config.run_name,
+            target_column=schema.name,
+            binning_process=params.binning_process,
+            logistic_regression=params.logistic_regression,
+            scorecard=params.scorecard,
         )
         return model_training_config
 

@@ -5,17 +5,17 @@ data_preprocessing:
     shuffle: True
     random_state: 42
 
-BinningProcess:
+binning_process:
   categorical_variables: ['person_home_ownership', 'loan_intent', 'loan_grade', 'cb_person_default_on_file']
   selection_criteria:
     iv:
       min: 0.02
       max: 1
 
-LogisticRegression:
+logistic_regression:
   random_state: 42
 
-Scorecard:
+scorecard:
   scaling_method: 'pdo_odds'
   scaling_method_params:
     pdo: 20
