@@ -19,15 +19,19 @@ data_preprocessing:
 
 model_training:
   root_dir: artifacts/model_training
+  model_path: artifacts/model_training/model.joblib
   train_data_path: artifacts/data_preprocessing/train.csv
-  model_path: artifacts/model_training/model.joblib
-
-model_evaluation:
-  root_dir: artifacts/model_evaluation
   test_data_path: artifacts/data_preprocessing/test.csv
-  model_path: artifacts/model_training/model.joblib
-  metric_file_name: artifacts/model_evaluation/metrics.json
+  experiment_name: credit-scorecard  # change this if you wanted to create new experiment
+  run_name: woe-logreg-scorecard-model  # change this if you wanted to create new run
 
-model_predictor:
-  root_dir: models
+# model_evaluation:
+#   root_dir: artifacts/model_evaluation
+#   model_path: artifacts/model_training/model.joblib
+#   metric_file_name: artifacts/model_evaluation/metrics.json
+#   experiment_name: credit-scorecard  # change this if you wanted to create new experiment
+#   run_name: woe-logreg-scorecard-model  # change this if you wanted to create new run
+
+model_inference:
+  root_dir: models/
   model_path: models/model.joblib
