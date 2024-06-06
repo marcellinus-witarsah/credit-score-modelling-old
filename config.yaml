@@ -20,14 +20,14 @@ data_preprocessing:
 model_training:
   root_dir: artifacts/model_training
   train_data_path: artifacts/data_preprocessing/train.csv
-  model_path: artifacts/model_training/model.pkl
+  model_path: artifacts/model_training/model.joblib
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
   test_data_path: artifacts/data_preprocessing/test.csv
-  model_path: artifacts/model_training/model.pkl
+  model_path: artifacts/model_training/model.joblib
   metric_file_name: artifacts/model_evaluation/metrics.json
 
 model_predictor:
   root_dir: models
-  model_path: models/model.pkl
+  model_path: models/model.joblib

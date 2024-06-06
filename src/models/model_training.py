@@ -1,4 +1,5 @@
 import pandas as pd
+import joblib
 from sklearn.linear_model import LogisticRegression
 from optbinning import Scorecard
 from optbinning import BinningProcess
@@ -38,14 +39,14 @@ class ModelTraining:
         logreg_model = LogisticRegression(**self.config.LogisticRegression)
 
         # Instantiate Scorecard Model
-        scorecard = Scorecard(
+        scorecard_model = Scorecard(
             binning_process=binning_process,
             estimator=logreg_model,
             **self.config.Scorecard
         )
 
         # Train
-        scorecard.fit(X_train, y_train)
+        scorecard_model.fit(X_train, y_train)
 
         # Save model
-        scorecard.save(self.config.model_path)
+        joblib.dump(scorecard_model, self.config.model_path)
