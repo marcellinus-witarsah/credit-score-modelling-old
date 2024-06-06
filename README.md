@@ -6,6 +6,7 @@
         Figure 1: Credit Score Illustration (<a href="https://www.simmonsbank.com/siteassets/content-hub/learning-center/credit-score-image.jpg">Source</a>).
     </p>
 </p>
+
 ## Business Context
 
 Increased competition and pressures for revenue generation have led Bank XYZ to seek effective ways to find and attract new creditworthy customers while controlling their losses. Bank XYZ has launched an aggressive and massive campaign to reach a larger and more diverse group of potential customers, including those who may not have previously considered applying for a loan. This increase in the number of applicants means a greater proportion may have higher risk profiles. Currently, onboarding these new potential customers involves a manual credit risk assessment process, which is slow and inconsistent, often leading customers to seek loans from other banks.
@@ -489,7 +490,7 @@ Recommendations for the potential users of this scorecard model:
 2. Operational Team: Use the automated scoring system to make the credit evaluation process more efficient, ensuring quick and consistent credit approvals for eligible customers.
 3. Marketing Team: Use insights from the credit scoring model to create targeted marketing strategies and customized credit card offers for different customer segments based on their credit risk and financial needs.
 
-## Deliverables Assets:
+## Deliverables Assets
 1. [Credit Scorecard Model](models/woe_lr_scorecard.pkl)
 2. [Credit Scorecard](reports/credit_scorecard.csv)
 3. [Credit Scorecard Coverage Table](reports/coverage_table.csv)
