@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/294975196886021961/8bea25cc0dfb4edf8ce030ac03c5f52e/artifacts
+end_time: 1717729185375
+entry_point_name: ''
+experiment_id: '294975196886021961'
+lifecycle_stage: active
+run_id: 8bea25cc0dfb4edf8ce030ac03c5f52e
+run_name: woe-logreg-scorecard-model
+run_uuid: 8bea25cc0dfb4edf8ce030ac03c5f52e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717729158154
+status: 3
+tags: []
+user_id: marcellinus-witarsah
