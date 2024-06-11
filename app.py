@@ -1,10 +1,13 @@
-import mlflow
-import os
 import pandas as pd
-from src.utils.common import logger
+import os
+import mlflow
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
-import uvicorn
+from dotenv import load_dotenv, find_dotenv
+from src.utils.common import logger
+
+load_dotenv(find_dotenv())
 
 # Load model:
 model_name = "credit-score-model"

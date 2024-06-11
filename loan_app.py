@@ -34,13 +34,14 @@ def main():
     loan_int_rate = st.number_input(
         "Interest Rate (%)", min_value=0.0, max_value=100.0, value=10.0, step=0.1
     )
-    loan_percent_income = st.number_input(
-        "Loan Amount as Percentage of Income",
-        min_value=0.0,
-        max_value=1.0,
-        value=0.0,
-        step=0.1,
-    )
+    # loan_percent_income = st.number_input(
+    #     "Loan Amount as Percentage of Income",
+    #     min_value=0.0,
+    #     max_value=1.0,
+    #     value=0.0,
+    #     step=0.1,
+    # )
+    loan_percent_income = round(loan_amnt / person_income, 2)
 
     st.header("Credit Information")
     cb_person_default_on_file = st.selectbox("Default on File", ["Yes", "No"])
