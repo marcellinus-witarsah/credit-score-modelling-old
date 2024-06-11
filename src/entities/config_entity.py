@@ -98,9 +98,9 @@ class ModelInferenceConfig:
     Data class for storing model inference configuration.
 
     Attributes:
-        root_dir (Path): The root directory for model inference artifacts.
-        model_path (Path): The path to the model file.
+        registered_model_name (str): The name of the registered model.
+        version (int): The version number of the model.
     """
 
-    root_dir: Path
-    model_path: Path
+    registered_model_name: str
+    version: int

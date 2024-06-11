@@ -132,22 +132,17 @@ class ConfigurationManager:
 
     def get_model_inference_config(self) -> ModelInferenceConfig:
         """
-        Get the configuration for model inference.
-
-        This method reads the model inference configuration from the config
-        file and prepares the directories required for model inference.
+        Get configuration for model inference.
 
         Returns:
-            ModelInferenceConfig: An instance of ModelInferenceConfig containing
-            the root directory and model path for model inference.
+            ModelInferenceConfig: Configuration for model inference.
         """
         config = self.config.model_inference
 
         create_directories([config.root_dir])
 
         model_inference_config = ModelInferenceConfig(
-            root_dir=Path(config.root_dir),
-            model_path=Path(config.model_path),
+            registered_model_name=config.mlflow.registered_model_name,
+            version=config.mlflow.version,
         )
-
         return model_inference_config

@@ -6,17 +6,16 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv, find_dotenv
 from src.utils.common import logger
+from src.models.model_inference import ModelInference
+from src.config.configuration_manager import ConfigurationManager
 
 load_dotenv(find_dotenv())
 
 # Load model:
-model_name = "credit-score-model"
-version = 1
-try:
-    mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
-    model = mlflow.sklearn.load_model(f"models:/{model_name}/{version}")
-except Exception as e:
-    logger.error(e)
+configuration_manager = ConfigurationManager()
+model_inference = ModelInference(
+    config=configuration_manager.get_model_inference_config()
+)
 
 
 # Create class containing input data schema for validation:
@@ -65,7 +64,7 @@ def calculate_credit_score(data: LoanApplicant):
         }
     )
 
-    credit_score = model.score(input)
+    credit_score = model_inference.score(input)
     return {"credit_score": credit_score[0]}
 
 
