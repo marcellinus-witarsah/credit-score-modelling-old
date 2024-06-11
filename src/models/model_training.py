@@ -18,6 +18,19 @@ from src.models.metrics import roc_auc, pr_auc, gini, ks
 load_dotenv(find_dotenv())
 
 
+from sklearn.model_selection import train_test_split
+import pandas as pd
+from pathlib import Path
+import logging
+from typing import Tuple
+from dotenv import load_dotenv, find_dotenv
+import mlflow
+from urllib.parse import urlparse
+from mlflow.models import infer_signature
+
+load_dotenv(find_dotenv())
+
+
 class ModelTraining:
     """
     Class to handle the model training process.
@@ -76,7 +89,7 @@ class ModelTraining:
 
         logger.info("Start Tracking ...")
         # Track Experiment:
-        with mlflow.start_run(run_name=self.config.run_name):
+        with mlflow.start_run():
             logger.info("Log Params")
             mlflow.log_params(self.config.binning_process)
             mlflow.log_params(self.config.logistic_regression)
@@ -102,7 +115,7 @@ class ModelTraining:
                 scorecard_model,
                 "model",
                 signature=signature,
-                registered_model_name="WeightOfEvidence+LogisticRegression",
+                registered_model_name=self.config.registered_model_name,
             )
 
             # Log Plots:

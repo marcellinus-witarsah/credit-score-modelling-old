@@ -22,11 +22,13 @@ model_training:
   model_path: artifacts/model_training/model.joblib
   train_data_path: artifacts/data_preprocessing/train.csv
   test_data_path: artifacts/data_preprocessing/test.csv
-  experiment_name: credit-scorecard  # change this if you wanted to create new experiment
-  run_name: woe-logreg-scorecard-model  # change this if you wanted to create new run
   mlflow:
-    registered_model_name: credit-scoring-model
+    experiment_name: credit-score-modelling  # change this if you wanted to create new experiment
+    registered_model_name: credit-score-model
 
 model_inference:
+  mlflow:
+    registered_model_name: credit-score-model
+    version: 1
   root_dir: models/
   model_path: models/model.joblib

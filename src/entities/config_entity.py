@@ -65,15 +65,15 @@ class DataPreprocessingConfig:
 @dataclass(frozen=True)
 class ModelTrainingConfig:
     """
-    Data class for storing model training configuration.
+    Data class for storing model inference configuration.
 
     Attributes:
-        root_dir (str): Root directory for model training.
+        root_dir (str): Root directory for model inference.
         model_path (str): Path to save the trained model.
-        train_data_path (str): Path to the training data.
+        train_data_path (str): Path to the inference data.
         test_data_path (str): Path to the test data.
         experiment_name (str): Name of the experiment.
-        run_name (str): Name of the run.
+        registered_model_name (str): Model name.
         target_column (str): The name of the target column.
         binning_process (dict): Configuration for the binning process.
         logistic_regression (dict): Configuration for logistic regression.
@@ -85,7 +85,7 @@ class ModelTrainingConfig:
     train_data_path: str
     test_data_path: str
     experiment_name: str
-    run_name: str
+    registered_model_name: str
     target_column: str
     binning_process: dict
     logistic_regression: dict
