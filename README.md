@@ -497,9 +497,3 @@ Recommendations for the potential users of this scorecard model:
 
 ## References 
 1. Credit Risk Scorecards: Developing and Implementing Intelligent Credit Scoring - *Naeem Siddiqi*
-
-## Improvement
-- [x] Refine README.md documentation
-- [ ] Modularize the code from Python Notebook into Python Scripts.
-- [ ] Create a machine learnign pipeline for automate training and testing process.
-- [ ] Create an interactive website that allow to predict credit score based on input.
