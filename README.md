@@ -303,7 +303,7 @@ Example results of calculting the Weight of Evidence is shown below (using `optb
 | Totals |                      | 22806 |  1.000000 |     17831 |  4975 |   0.218144 |           | 0.576370 | 0.067146 |
 
 <p align="center">
-    <img src="reports/figures/woe_plot_person_income.png" alt="WoE Plot Person Income" height="400">
+    <img src="reports/figures/woe_person_income.png" alt="WoE Plot Person Income" height="400">
     <p align="center">
         Figure 23: WoE Plot Person Income (from Author).
     </p>
