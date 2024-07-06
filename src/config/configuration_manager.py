@@ -63,19 +63,13 @@ class ConfigurationManager:
             DataPreprocessingConfig: Configuration for data preprocessing.
         """
         config = self.config.data_preprocessing
-        params = self.params.data_preprocessing
-
-        create_directories([config.root_dir])
-
         data_preprocessing_config = DataPreprocessingConfig(
-            root_dir=config.root_dir,
-            source_path=config.source_path,
-            train_data_path=config.train_data_path,
-            test_data_path=config.test_data_path,
-            target_column=params.split_data.target_column,
-            test_size=params.split_data.test_size,
-            shuffle=params.split_data.shuffle,
-            random_state=params.split_data.random_state,
+            raw_data_file=config.raw_data_file,
+            train_file=config.train_file,
+            test_file=config.test_file,
+            target=config.target,
+            test_size=config.test_size,
+            random_state=config.random_state,
         )
         return data_preprocessing_config
 

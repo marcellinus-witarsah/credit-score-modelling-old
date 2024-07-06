@@ -1,4 +1,11 @@
 data_validation:
   raw_data_file: "data/raw/credit_risk_dataset.csv"
   schema_file: "src/schema.yaml"
-  
+
+data_preprocessing:
+  raw_data_file: "data/raw/credit_risk_dataset.csv"
+  train_file: "data/processed/train.csv"
+  test_file: "data/processed/test.csv"
+  target: "loan_status"
+  test_size: 0.3
+  random_state: 42

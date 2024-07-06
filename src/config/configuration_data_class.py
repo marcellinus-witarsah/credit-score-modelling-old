@@ -34,13 +34,11 @@ class DataPreprocessingConfig:
         random_state (int): Random seed for reproducibility.
     """
 
-    root_dir: Path
-    source_path: Path
-    train_data_path: Path
-    test_data_path: Path
-    target_column: str
+    raw_data_file: Path
+    train_file: Path
+    test_file: Path
+    target: str
     test_size: float
-    shuffle: bool
     random_state: int
 
 

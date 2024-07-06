@@ -3,7 +3,7 @@ import time
 from typing import Tuple
 from src.utils.common import logger
 from sklearn.model_selection import train_test_split
-from src.entities.config_entity import DataPreprocessingConfig
+from src.config.configuration_manager import ConfigurationManager
 
 
 # src/data/data_preprocessing.py
@@ -19,7 +19,7 @@ class DataPreprocessing:
         Args:
             config (DataPreprocessingConfig): Configuration for data preprocessing.
         """
-        self.config = DataPreprocessingConfig
+        self.config = ConfigurationManager().data_preprocessing_config
 
     def split(self) -> Tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
         """
@@ -33,12 +33,12 @@ class DataPreprocessing:
             logger.info("Split data")
 
             # 1. Load data:
-            df = pd.read_csv(self.config.source_path)
+            df = pd.read_csv(self.config.raw_data_file)
 
             # 2. Separate between features and label
             X, y = (
-                df.drop(columns=[self.config.target_column]),
-                df[self.config.target_column],
+                df.drop(columns=[self.config.target]),
+                df[self.config.target],
             )
 
             # 3. Split Data:
@@ -55,11 +55,16 @@ class DataPreprocessing:
             test = pd.concat([X_test, y_test], axis=1)
 
             # 5. Save data:
-            train.to_csv(self.config.train_data_path, index=False)
-            test.to_csv(self.config.test_data_path, index=False)
+            train.to_csv(self.config.train_file, index=False)
+            test.to_csv(self.config.test_file, index=False)
 
             elapsed_time = time.perf_counter() - start_time
             logger.info("Finished in {:.2f} seconds.".format(elapsed_time))
 
         except Exception as e:
             logger.error(e)
+
+
+if __name__ == "__main__":
+    data_preprocessing = DataPreprocessing()
+    data_preprocessing.split()
