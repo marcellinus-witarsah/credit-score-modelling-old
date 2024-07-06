@@ -33,42 +33,6 @@ logging.basicConfig(
 logger = logging.getLogger("credit-scorecard-logger")  # get logger
 
 
-# For Reading .json.gz data
-@ensure_annotations
-def parse(path: Path):
-    """
-    Parse data from .gz file
-
-    Args:
-        path (str): path of .gz file
-
-    Yields:
-        Iterator[Dict[str, Any]]: dictionary of containing data
-    """
-    g = gzip.open(path, "rb")
-    for l in g:
-        yield json.loads(l)
-
-
-@ensure_annotations
-def get_data_frame_from_gz(path: Path) -> pd.DataFrame:
-    """
-    Read .gz file and convert to Pandas DataFrame
-
-    Args:
-        path (str): path of .gz file
-
-    Returns:
-        pd.DataFrame: dataset
-    """
-    i = 0
-    df = {}
-    for d in parse(path):
-        df[i] = d
-        i += 1
-    return pd.DataFrame.from_dict(df, orient="index")
-
-
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns

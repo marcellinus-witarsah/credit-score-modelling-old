@@ -1,6 +1,7 @@
+import time
 import pandas as pd
 from src.utils.common import logger
-from src.entities.config_entity import DataValidationConfig
+from src.config.configuration_manager import ConfigurationManager
 
 
 class DataValidation:
@@ -8,16 +9,13 @@ class DataValidation:
     Class to handle the data validation process.
     """
 
-    def __init__(self, config: DataValidationConfig):
+    def __init__(self):
         """
         Instantiate `DataValidation` class.
-
-        Args:
-            config (DataValidationConfig): Configuration for data validation.
         """
-        self.config = config
+        self.config = ConfigurationManager().data_validation_config
 
-    def validate_data(self):
+    def validate(self):
         """
         Validate the data based on the provided schema.
 
@@ -26,26 +24,39 @@ class DataValidation:
         Logs messages indicating whether data types match or not.
         """
         try:
+            start_time = time.perf_counter()
             logger.info("Validate data")
+
+            # 1. Load data:
+            df = pd.read_csv(self.config.raw_data_file)
+
+            # 2. Set up variables for validation
+            columns = df.columns
+            schema = self.config.schema
             validation_status = None
 
-            df = pd.read_csv(self.config.source_path)
-            all_cols = df.columns
-            all_schema = self.config.schema
-
-            for col in all_cols:
-                if col not in all_schema.keys():
+            # 3. Perform validation by comparing columns from the data and the schema
+            for col in columns:
+                if col not in schema.keys():
                     validation_status = False
                 else:
-                    if df[col].dtype == all_schema[col]:
+                    if df[col].dtype == schema[col]:
                         validation_status = True
                     else:
                         validation_status = False
 
+            # 4. Check validation status
             if validation_status:
                 logger.info("All data types match")
             else:
                 logger.info("There's a data types mismatch")
 
+            elapsed_time = time.perf_counter() - start_time
+            logger.info("Finished in {:.2f} seconds.".format(elapsed_time))
         except Exception as e:
             logger.error(e)
+
+
+if __name__ == "__main__":
+    data_validation = DataValidation()
+    data_validation.validate()

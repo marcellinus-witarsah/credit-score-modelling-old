@@ -1,0 +1,4 @@
+data_validation:
+  raw_data_file: "data/raw/credit_risk_dataset.csv"
+  schema_file: "src/schema.yaml"
+  
