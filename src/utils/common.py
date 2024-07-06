@@ -30,151 +30,25 @@ logging.basicConfig(
     ],
 )  # set logging configuration
 
-logger = logging.getLogger("credit-scorecard-logger")  # get logger
+logger = logging.getLogger("credit-score-modelling-logger")  # get logger
 
 
-# For Reading .json.gz data
-@ensure_annotations
-def parse(path: Path):
+def interpret_information_value(score: float) -> str:
     """
-    Parse data from .gz file
+    Interpret Information Score
 
     Args:
-        path (str): path of .gz file
-
-    Yields:
-        Iterator[Dict[str, Any]]: dictionary of containing data
-    """
-    g = gzip.open(path, "rb")
-    for l in g:
-        yield json.loads(l)
-
-
-@ensure_annotations
-def get_data_frame_from_gz(path: Path) -> pd.DataFrame:
-    """
-    Read .gz file and convert to Pandas DataFrame
-
-    Args:
-        path (str): path of .gz file
-
+        score (float): Information Value.
     Returns:
-        pd.DataFrame: dataset
+        str: Interpretation of the score.
     """
-    i = 0
-    df = {}
-    for d in parse(path):
-        df[i] = d
-        i += 1
-    return pd.DataFrame.from_dict(df, orient="index")
-
-
-@ensure_annotations
-def read_yaml(path_to_yaml: Path) -> ConfigBox:
-    """reads yaml file and returns
-
-    Args:
-        path_to_yaml (str): path like input
-
-    Raises:
-        ValueError: if yaml file is empty
-        e: empty file
-
-    Returns:
-        ConfigBox: ConfigBox type
-    """
-    try:
-        with open(path_to_yaml) as yaml_file:
-            content = yaml.safe_load(yaml_file)
-            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
-            return ConfigBox(content)
-    except BoxValueError:
-        raise ValueError("yaml file is empty")
-    except Exception as e:
-        raise e
-
-
-@ensure_annotations
-def create_directories(path_to_directories: list, verbose=True):
-    """create list of directories
-
-    Args:
-        path_to_directories (list): list of path of directories
-        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
-    """
-    for path in path_to_directories:
-        os.makedirs(path, exist_ok=True)
-        if verbose:
-            logger.info(f"Created directory at: {path}")
-
-
-@ensure_annotations
-def save_json(path: Path, data: dict):
-    """save json data
-
-    Args:
-        path (Path): path to json file
-        data (dict): data to be saved in json file
-    """
-    with open(path, "w") as f:
-        json.dump(data, f, indent=4)
-
-    logger.info(f"JSON file saved at: {path}")
-
-
-@ensure_annotations
-def load_json(path: Path) -> ConfigBox:
-    """load json files data
-
-    Args:
-        path (Path): path to json file
-
-    Returns:
-        ConfigBox: data as class attributes instead of dict
-    """
-    with open(path) as f:
-        content = json.load(f)
-
-    logger.info(f"JSON file loaded succesfully from: {path}")
-    return ConfigBox(content)
-
-
-@ensure_annotations
-def save_bin(data: Any, path: Path):
-    """save binary file
-
-    Args:
-        data (Any): data to be saved as binary
-        path (Path): path to binary file
-    """
-    joblib.dump(value=data, filename=path)
-    logger.info(f"Binary file saved at: {path}")
-
-
-@ensure_annotations
-def load_bin(path: Path) -> Any:
-    """load binary data
-
-    Args:
-        path (Path): path to binary file
-
-    Returns:
-        Any: object stored in the file
-    """
-    data = joblib.load(path)
-    logger.info(f"Binary file loaded from: {path}")
-    return data
-
-
-@ensure_annotations
-def get_size(path: Path) -> str:
-    """get size in KB
-
-    Args:
-        path (Path): path of the file
-
-    Returns:
-        str: size in KB
-    """
-    size_in_kb = round(os.path.getsize(path) / 1024)
-    return f"~ {size_in_kb} KB"
+    if score < 0.02:
+        return "Not Predictive"
+    elif 0.02 <= score and score < 0.1:
+        return "Weak Predictive"
+    elif 0.1 <= score and score < 0.3:
+        return "Medium Predictive"
+    elif 0.3 <= score and score < 0.5:
+        return "Strong Predictive"
+    else:
+        return "Very Strong Predictive"
