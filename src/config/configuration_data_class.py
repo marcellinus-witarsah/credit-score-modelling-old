@@ -19,12 +19,12 @@ class DataValidationConfig:
 
 
 @dataclass(frozen=True)
-class DataPreprocessingConfig:
+class DataSplittingConfig:
     """
-    Data class for storing data preprocessing configuration.
+    Data class for storing data splitting configuration.
 
     Attributes:
-        root_dir (Path): Root directory for data preprocessing.
+        root_dir (Path): Root directory for data splitting.
         source_path (Path): Source path of the data to be processed.
         train_data_path (Path): Path to save the training data.
         test_data_path (Path): Path to save the testing data.

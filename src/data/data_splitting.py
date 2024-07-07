@@ -19,7 +19,7 @@ class DataSplitting:
         Args:
             config (DataPreprocessingConfig): Configuration for data preprocessing.
         """
-        self.config = ConfigurationManager().data_preprocessing_config
+        self.config = ConfigurationManager().data_splitting_config
 
     def run(self) -> Tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
         """
@@ -66,5 +66,5 @@ class DataSplitting:
 
 
 if __name__ == "__main__":
-    data_preprocessing = DataPreprocessing()
-    data_preprocessing.run()
+    data_splitting = DataSplitting()
+    data_splitting.run()

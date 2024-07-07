@@ -4,7 +4,7 @@ from src.utils.common import create_directories
 from src.constants import CONFIG_FILE_PATH
 from src.constants import SCHEMA_FILE_PATH
 from src.config.configuration_data_class import DataValidationConfig
-from src.config.configuration_data_class import DataPreprocessingConfig
+from src.config.configuration_data_class import DataSplittingConfig
 from src.config.configuration_data_class import TrainingConfig
 from src.config.configuration_data_class import PredictionConfig
 
@@ -55,15 +55,15 @@ class ConfigurationManager:
         return data_validation_config
 
     @property
-    def data_preprocessing_config(self) -> DataPreprocessingConfig:
+    def data_splitting_config(self) -> DataSplittingConfig:
         """
-        Get configuration for data preprocessing.
+        Get configuration for data splitting.
 
         Returns:
-            DataPreprocessingConfig: Configuration for data preprocessing.
+            DataSplittingConfig: Configuration for data splitting.
         """
-        config = self.config.data_preprocessing
-        data_preprocessing_config = DataPreprocessingConfig(
+        config = self.config.data_splitting
+        data_splitting_config = DataSplittingConfig(
             raw_data_file=config.raw_data_file,
             train_file=config.train_file,
             test_file=config.test_file,
@@ -71,7 +71,7 @@ class ConfigurationManager:
             test_size=config.test_size,
             random_state=config.random_state,
         )
-        return data_preprocessing_config
+        return data_splitting_config
 
     @property
     def model_training_config(self) -> TrainingConfig:
