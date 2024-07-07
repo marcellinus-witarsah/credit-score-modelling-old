@@ -5,6 +5,7 @@ from src.constants import CONFIG_FILE_PATH
 from src.constants import SCHEMA_FILE_PATH
 from src.config.configuration_data_class import DataValidationConfig
 from src.config.configuration_data_class import DataSplittingConfig
+from src.config.configuration_data_class import BuildFeaturesConfig
 from src.config.configuration_data_class import TrainingConfig
 from src.config.configuration_data_class import PredictionConfig
 
@@ -72,6 +73,24 @@ class ConfigurationManager:
             random_state=config.random_state,
         )
         return data_splitting_config
+
+    @property
+    def build_features_config(self) -> BuildFeaturesConfig:
+        """Get configuration for building features.
+
+        Returns:
+            BuildFeaturesConfig: Configuration for building features.
+        """
+        config = self.config.build_features
+        create_directories([config.artifacts_dir])
+
+        build_features_config = BuildFeaturesConfig(
+            train_file=config.train_file,
+            target=config.target,
+            processed_train_file=config.processed_train_file,
+            transformer_file=config.transformer_file,
+        )
+        return build_features_config
 
     @property
     def model_training_config(self) -> TrainingConfig:

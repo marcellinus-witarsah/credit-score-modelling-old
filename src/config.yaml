@@ -4,8 +4,17 @@ data_validation:
 
 data_splitting:
   raw_data_file: "data/raw/credit_risk_dataset.csv"
-  train_file: "data/processed/train.csv"
-  test_file: "data/processed/test.csv"
+  train_file: "data/interim/train.csv"
+  test_file: "data/interim/test.csv"
   target: "loan_status"
   test_size: 0.3
   random_state: 42
+
+build_features:
+  train_file: "data/interim/train.csv"
+  target: "loan_status"
+  processed_train_file: "data/processed/train.csv"
+  artifacts_dir: "artifacts"
+  transformer_file: "artifacts/woe_transformer.pickle"
+
+  
