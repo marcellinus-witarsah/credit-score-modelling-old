@@ -7,7 +7,7 @@ from src.config.configuration_manager import ConfigurationManager
 
 
 # src/data/data_preprocessing.py
-class DataPreprocessing:
+class DataSplitting:
     """
     Class to handle the data preprocessing process.
     """
@@ -21,7 +21,7 @@ class DataPreprocessing:
         """
         self.config = ConfigurationManager().data_preprocessing_config
 
-    def split(self) -> Tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
+    def run(self) -> Tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
         """
         Split data into train and test data evenly based on their target values.
 
@@ -59,7 +59,7 @@ class DataPreprocessing:
             test.to_csv(self.config.test_file, index=False)
 
             elapsed_time = time.perf_counter() - start_time
-            logger.info("Finished in {:.2f} seconds.".format(elapsed_time))
+            logger.info("Split data finished in {:.2f} seconds.".format(elapsed_time))
 
         except Exception as e:
             logger.error(e)
@@ -67,4 +67,4 @@ class DataPreprocessing:
 
 if __name__ == "__main__":
     data_preprocessing = DataPreprocessing()
-    data_preprocessing.split()
+    data_preprocessing.run()

@@ -15,7 +15,7 @@ class DataValidation:
         """
         self.config = ConfigurationManager().data_validation_config
 
-    def validate(self):
+    def run(self):
         """
         Validate the data based on the provided schema.
 
@@ -52,11 +52,13 @@ class DataValidation:
                 logger.info("There's a data types mismatch")
 
             elapsed_time = time.perf_counter() - start_time
-            logger.info("Finished in {:.2f} seconds.".format(elapsed_time))
+            logger.info(
+                "Validate data finished in {:.2f} seconds.".format(elapsed_time)
+            )
         except Exception as e:
             logger.error(e)
 
 
 if __name__ == "__main__":
     data_validation = DataValidation()
-    data_validation.validate()
+    data_validation.run()
