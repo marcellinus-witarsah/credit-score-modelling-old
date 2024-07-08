@@ -34,7 +34,7 @@ def main():
 
     # 5. Save the built features for training and the transformer object
     pd.concat([X_train, y_train], axis=1).to_csv(
-        build_features_config.processed_train_file
+        build_features_config.processed_train_file, index=False
     )
     with open(build_features_config.transformer_file, "wb") as file:
         pickle.dump(woe_transformer, file)

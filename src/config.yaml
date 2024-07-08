@@ -17,4 +17,11 @@ build_features:
   artifacts_dir: "artifacts"
   transformer_file: "artifacts/woe_transformer.pickle"
 
-  
+train:
+  processed_train_file: "data/processed/train.csv"
+  model_params: {"random_state": 42}
+  artifacts_dir: "artifacts"
+  model_file: "artifacts/model.pickle"
+  transformer_file: "artifacts/woe_transformer.pickle"
+  target: "loan_status"
+  test_file: "data/interim/test.csv"
