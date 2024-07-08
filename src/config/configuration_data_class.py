@@ -102,5 +102,8 @@ class PredictionConfig:
         version (int): The version number of the model.
     """
 
-    registered_model_name: str
-    version: int
+    artifacts_dir: Path
+    model_file: Path
+    transformer_file: Path
+    target: str
+    test_file: Path

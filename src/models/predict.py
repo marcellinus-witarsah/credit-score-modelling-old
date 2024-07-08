@@ -1,89 +1,27 @@
-import joblib
-import numpy as np
 import pandas as pd
-import mlflow
-import os
-from typing import Union
-from src.utils.common import logger
-from sklearn.base import BaseEstimator
-from src.entities.config_entity import ModelInferenceConfig
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
+import pickle
+from src.models.logistic_regression import LogisticRegressionModel
+from src.config.configuration_manager import ConfigurationManager
 
 
-class ModelInference:
-    """
-    A class used to perform model inference using a pre-trained model.
+def predict():
+    prediction_config = ConfigurationManager().prediction_config
 
-    This class is responsible for loading a model from a specified path and
-    providing methods to make predictions on input data.
+    # 1. Load data
+    test_df = pd.read_csv(prediction_config.test_file)
+    X_test, y_test = (
+        test_df.drop(columns=[prediction_config.target]),
+        test_df[prediction_config.target],
+    )
 
-    Attributes:
-        config (ModelInferenceConfig): Configuration for model inference.
-        model: The loaded machine learning model.
-    """
+    # 2. Initialize model
+    model = LogisticRegressionModel.from_file(prediction_config.model_file)
 
-    def __init__(self, config: ModelInferenceConfig):
-        """
-        Initialize the ModelInference with a configuration.
+    # 3. Evaluate testing performance
+    with open(prediction_config.transformer_file, "rb") as f:
+        woe_transformer = pickle.load(f)
+    model.evaluate(woe_transformer.transform(X_test), y_test, "Testing")
 
-        Args:
-            config (ModelInferenceConfig): The configuration containing paths for model inference.
-        """
-        self.config = config
-        self.model = self.get_model(
-            self.config.registered_model_name, self.config.version
-        )
 
-    def get_model(self, model_name: str, version: int) -> BaseEstimator:
-        try:
-            mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
-            model = mlflow.sklearn.load_model(f"models:/{model_name}/{version}")
-            return model
-        except Exception as e:
-            logger.error(e)
-
-    def predict(self, data: Union[pd.DataFrame, np.ndarray, np.array]) -> np.array:
-        """
-        Make predictions on input data.
-
-        Args:
-            data Union[pd.DataFrame, np.ndarray, np.array]: Preprocessed input data for which predictions are to be made.
-
-        Returns:
-            np.array: The predicted values.
-        """
-        logger.info("Predict")
-        prediction = self.model.predict(data)
-        return prediction
-
-    def predict_proba(
-        self, data: Union[pd.DataFrame, np.ndarray, np.array]
-    ) -> np.array:
-        """
-        Make probability predictions on input data.
-
-        Args:
-            data Union[pd.DataFrame, np.ndarray, np.array]: Preprocessed input data for which probability predictions are to be made.
-
-        Returns:
-            np.array: The predicted probabilities.
-        """
-        logger.info("Predict probabilities")
-        prediction = self.model.predict_proba(data)
-        return prediction[:, -1]
-
-    def score(self, data: Union[pd.DataFrame, np.ndarray, np.array]) -> np.array:
-        """
-        Give credit scores on input data.
-
-        Args:
-            data Union[pd.DataFrame, np.ndarray, np.array]: Preprocessed input data for which credit scores are to be made.
-
-        Returns:
-            np.array: The credit scores.
-        """
-        logger.info("Get credit score")
-        prediction = self.model.score(data)
-        return prediction
+if __name__ == "__main__":
+    predict()

@@ -25,3 +25,10 @@ train:
   transformer_file: "artifacts/woe_transformer.pickle"
   target: "loan_status"
   test_file: "data/interim/test.csv"
+
+predict:
+  artifacts_dir: "artifacts"
+  model_file: "artifacts/model.pickle"
+  transformer_file: "artifacts/woe_transformer.pickle"
+  target: "loan_status"
+  test_file: "data/interim/test.csv"

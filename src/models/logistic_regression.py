@@ -11,22 +11,22 @@ from src.models.metrics import roc_auc, pr_auc, gini, ks
 
 class LogisticRegressionModel(ModelStrategy):
 
-    def __init__(self, params):
-        self.__model = LogisticRegression(**params)
+    def __init__(self, model):
+        self.__model = model
         logger.info("Instantiated {} model".format(self.__model.__class__.__name__))
 
-    def __init__(self, file: Path):
-        with open(file, "rb") as f:
-            self.__model = pickle.load(f)
-        logger.info(
-            "Instantiated {} model from {} file".format(
-                self.__model.__class__.__name__, file
-            )
-        )
+    @classmethod
+    def from_file(cls, file_path):
+        with open(file_path, "rb") as file:
+            model = pickle.load(file)
+        logger.info("Load {} model from {} file".format(model.__class__.__name__, file))
+        return cls(model)
 
     @classmethod
-    def load_model(cls, file: Path):
-        return cls(file)
+    def from_parameters(cls, parameters):
+        model = LogisticRegression(**parameters)
+        logger.info("{} model created".format(model.__class__.__name__))
+        return cls(model)
 
     @property
     def model(self):

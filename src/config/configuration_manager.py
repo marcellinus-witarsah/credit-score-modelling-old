@@ -117,19 +117,20 @@ class ConfigurationManager:
         return train_config
 
     @property
-    def model_inference_config(self) -> PredictionConfig:
+    def prediction_config(self) -> PredictionConfig:
         """
         Get configuration for model inference.
 
         Returns:
             PredictionConfig: Configuration for model inference.
         """
-        config = self.config.model_inference
+        config = self.config.predict
 
-        create_directories([config.root_dir])
-
-        model_inference_config = PredictionConfig(
-            registered_model_name=config.mlflow.registered_model_name,
-            version=config.mlflow.version,
+        prediction_config = PredictionConfig(
+            artifacts_dir=config.artifacts_dir,
+            model_file=config.model_file,
+            transformer_file=config.transformer_file,
+            target=config.target,
+            test_file=config.test_file,
         )
-        return model_inference_config
+        return prediction_config

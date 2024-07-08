@@ -21,7 +21,7 @@ def train():
     )
 
     # 2. Initialize model
-    model = LogisticRegressionModel(train_config.model_params)
+    model = LogisticRegressionModel.from_parameters(train_config.model_params)
 
     # 3. Train model
     model.fit(X_train, y_train)
@@ -35,7 +35,7 @@ def train():
     model.evaluate(woe_transformer.transform(X_test), y_test, "Testing")
 
     # 6. Save model
-    model
+    model.save(train_config.model_file)
 
 
 if __name__ == "__main__":
