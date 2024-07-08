@@ -62,10 +62,11 @@ class BuildFeaturesConfig:
     target: str
     processed_train_file: Path
     transformer_file: Path
+    artifacts_dir: Path
 
 
 @dataclass(frozen=True)
-class TrainingConfig:
+class TrainConfig:
     """
     Data class for storing model training configuration.
 
@@ -82,16 +83,13 @@ class TrainingConfig:
         scorecard (dict): Configuration for the scorecard.
     """
 
-    root_dir: str
-    model_path: str
-    train_data_path: str
-    test_data_path: str
-    experiment_name: str
-    registered_model_name: str
-    target_column: str
-    binning_process: dict
-    logistic_regression: dict
-    scorecard: dict
+    processed_train_file: Path
+    model_params: dict
+    artifacts_dir: Path
+    model_file: Path
+    transformer_file: Path
+    target: str
+    test_file: Path
 
 
 @dataclass(frozen=True)

@@ -6,7 +6,7 @@ from src.constants import SCHEMA_FILE_PATH
 from src.config.configuration_data_class import DataValidationConfig
 from src.config.configuration_data_class import DataSplittingConfig
 from src.config.configuration_data_class import BuildFeaturesConfig
-from src.config.configuration_data_class import TrainingConfig
+from src.config.configuration_data_class import TrainConfig
 from src.config.configuration_data_class import PredictionConfig
 
 
@@ -89,36 +89,32 @@ class ConfigurationManager:
             target=config.target,
             processed_train_file=config.processed_train_file,
             transformer_file=config.transformer_file,
+            artifacts_dir=config.artifacts_dir,
         )
         return build_features_config
 
     @property
-    def model_training_config(self) -> TrainingConfig:
+    def train_config(self) -> TrainConfig:
         """
         Get configuration for model training.
 
         Returns:
-            ModelTrainingConfig: Configuration for model training.
+            TrainConfig: Configuration for model training.
         """
-        config = self.config.model_training
-        params = self.params
-        schema = self.schema.TARGET_COLUMN
+        config = self.config.train
 
-        create_directories([config.root_dir])
+        create_directories([config.artifacts_dir])
 
-        model_training_config = TrainingConfig(
-            root_dir=config.root_dir,
-            model_path=config.model_path,
-            train_data_path=config.train_data_path,
-            test_data_path=config.test_data_path,
-            experiment_name=config.mlflow.experiment_name,
-            registered_model_name=config.mlflow.registered_model_name,
-            target_column=schema.name,
-            binning_process=params.binning_process,
-            logistic_regression=params.logistic_regression,
-            scorecard=params.scorecard,
+        train_config = TrainConfig(
+            processed_train_file=config.processed_train_file,
+            model_params=config.model_params,
+            artifacts_dir=config.artifacts_dir,
+            model_file=config.model_file,
+            transformer_file=config.transformer_file,
+            target=config.target,
+            test_file=config.test_file,
         )
-        return model_training_config
+        return train_config
 
     @property
     def model_inference_config(self) -> PredictionConfig:
