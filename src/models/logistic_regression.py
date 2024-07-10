@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 import numpy as np
 from pathlib import Path
+from typing import Tuple
 from sklearn.linear_model import LogisticRegression
 from src.utils.common import logger
 from src.models.model_strategy import ModelStrategy
@@ -66,16 +67,20 @@ class LogisticRegressionModel(ModelStrategy):
 
     def evaluate(
         self, X_test: pd.DataFrame, y_true: pd.Series, type: str = "Training"
-    ) -> None:
+    ) -> tuple:
         start_time = time.perf_counter()
         y_pred = self.predict_proba(X_test)
+        roc_auc_score = roc_auc(y_true, y_pred)
+        pr_auc_score = pr_auc(y_true, y_pred)
+        gini_score = gini(y_true, y_pred)
+        ks_score = ks(y_true, y_pred)
         logger.info(
             "{} Performance >>> ROC AUC: {:.2f}, PR AUC: {:.2f}, GINI: {:.2f}, KS SCORE: {:.2f}".format(
                 type,
-                roc_auc(y_true, y_pred),
-                pr_auc(y_true, y_pred),
-                gini(y_true, y_pred),
-                ks(y_true, y_pred),
+                roc_auc_score,
+                pr_auc_score,
+                gini_score,
+                ks_score,
             )
         )
         elapsed_time = time.perf_counter() - start_time
@@ -84,6 +89,7 @@ class LogisticRegressionModel(ModelStrategy):
                 self.__model.__class__.__name__, elapsed_time
             )
         )
+        return (roc_auc_score, pr_auc_score, gini_score, ks_score)
 
     def save(self, file: Path) -> None:
         start_time = time.perf_counter()

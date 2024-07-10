@@ -1,7 +1,9 @@
 import pandas as pd
 import pickle
+from pathlib import Path
 from src.models.logistic_regression import LogisticRegressionModel
 from src.config.configuration_manager import ConfigurationManager
+from src.utils.common import load_pickle, save_json, save_pickle
 
 
 def train():
@@ -27,15 +29,34 @@ def train():
     model.fit(X_train, y_train)
 
     # 4. Evaluate training performance
-    model.evaluate(X_train, y_train, "")
+    roc_auc_score, pr_auc_score, gini_score, ks_score = model.evaluate(
+        X_train, y_train, "Train"
+    )
+    save_json(
+        Path("reports/train_evaluation_metric.json"),
+        {
+            "roc_auc_score": roc_auc_score,
+            "pr_auc_score": pr_auc_score,
+            "gini_score": gini_score,
+            "ks_score": ks_score,
+        },
+    )
 
     # 5. Evaluate testing performance
-    with open(train_config.transformer_file, "rb") as f:
-        woe_transformer = pickle.load(f)
+    woe_transformer = load_pickle(path=train_config.transformer_file, mode="rb")
     model.evaluate(woe_transformer.transform(X_test), y_test, "Testing")
+    save_json(
+        Path("reports/test_evaluation_metric.json"),
+        {
+            "roc_auc_score": roc_auc_score,
+            "pr_auc_score": pr_auc_score,
+            "gini_score": gini_score,
+            "ks_score": ks_score,
+        },
+    )
 
     # 6. Save model
-    model.save(train_config.model_file)
+    save_pickle(data=model, path=train_config.model_file, mode="wb")
 
 
 if __name__ == "__main__":

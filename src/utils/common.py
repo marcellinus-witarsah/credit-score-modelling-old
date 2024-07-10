@@ -1,16 +1,16 @@
 import os
 import sys
-import gzip
 import yaml
 import json
 import logging
 import joblib
-import pandas as pd
+import pickle
+
 from typing import Any
-from pathlib import WindowsPath, Path
+from pathlib import Path
 from box import ConfigBox
 from ensure import ensure_annotations
-from typing import Iterator, Dict, Any, Union, List
+from typing import Any, Union
 from box.exceptions import BoxValueError
 
 
@@ -142,3 +142,32 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path) / 1024)
     return f"~ {size_in_kb} KB"
+
+
+@ensure_annotations
+def load_pickle(path: Union[str, Path], mode: str):
+    """Load pickle file
+
+    Args:
+        file (Union[str, Path]): file location
+        mode (str): define which mode to open the file
+
+    Returns:
+        Any: pickle object
+    """
+    with open(path, mode) as f:
+        data = pickle.load(f)
+    logger.info(f"Pickle file loaded from: {path}")
+    return data
+
+
+def save_pickle(data: Any, path: Path, mode=str):
+    """Save pickle file
+
+    Args:
+        data (Any): data to be saved as binary
+        path (Path): path to binary file
+    """
+    with open(path, mode) as f:
+        pickle.dump(data, f)
+    logger.info(f"Pickle file saved at: {path}")
