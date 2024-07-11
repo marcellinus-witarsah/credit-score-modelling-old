@@ -161,12 +161,45 @@ def load_pickle(path: Union[str, Path], mode: str):
     return data
 
 
+@ensure_annotations
 def save_pickle(data: Any, path: Path, mode=str):
     """Save pickle file
 
     Args:
         data (Any): data to be saved as binary
         path (Path): path to binary file
+        mode (str): define which mode to open the file
+    """
+    with open(path, mode) as f:
+        pickle.dump(data, f)
+    logger.info(f"Pickle file saved at: {path}")
+
+
+@ensure_annotations
+def load_skops(path: Union[str, Path], mode: str):
+    """Load pickle file
+
+    Args:
+        file (Union[str, Path]): file location
+        mode (str): define which mode to open the file
+
+    Returns:
+        Any: pickle object
+    """
+    with open(path, mode) as f:
+        data = pickle.load(f)
+    logger.info(f"Pickle file loaded from: {path}")
+    return data
+
+
+@ensure_annotations
+def save_skops(data: Any, path: Path, mode=str):
+    """Save pickle file
+
+    Args:
+        data (Any): data to be saved as binary
+        path (Path): path to binary file
+        mode (str): define which mode to open the file
     """
     with open(path, mode) as f:
         pickle.dump(data, f)
