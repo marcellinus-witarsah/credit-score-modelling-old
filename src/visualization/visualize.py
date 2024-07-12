@@ -13,7 +13,6 @@ def plot_calibration_curve(
     y_true: np.array,
     y_pred_proba: np.array,
     model_name: str,
-    figsize: Tuple[int, int],
     path: str = None,
     n_bins=10,
 ) -> plt.figure:
@@ -33,7 +32,7 @@ def plot_calibration_curve(
     prob_true, prob_pred = calibration_curve(y_true, y_pred_proba, n_bins=n_bins)
 
     plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots()
     ax.plot([0, 1], [0, 1], linestyle="--", label="Perfectly calibrated")
     ax.plot(prob_pred, prob_true, marker="o", label=model_name)
     ax.set_xlabel("Mean predicted probability")
@@ -55,7 +54,7 @@ def plot_calibration_curve(
 
 
 def plot_pred_proba_distribution(
-    y_true: np.array, y_pred_proba: np.array, figsize: Tuple[int, int]
+    y_true: np.array, y_pred_proba: np.array
 ) -> plt.Axes:
     """
     Plot the predicted probability distributions for the default and non-default classes.
@@ -68,7 +67,7 @@ def plot_pred_proba_distribution(
         plt.Axes: Matplotlib axis object.
     """
     plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots()
 
     sns.histplot(
         y_pred_proba[y_true == 0],
@@ -105,7 +104,7 @@ def plot_pred_proba_distribution(
 
 
 def plot_roc_auc_curve(
-    y_true: np.array, y_pred_proba: np.array, figsize: Tuple[int, int]
+    y_true: np.array, y_pred_proba: np.array
 ) -> plt.Axes:
     """
     Plot the ROC curve and calculate the AUC.
@@ -121,7 +120,7 @@ def plot_roc_auc_curve(
     roc_auc = auc(fpr, tpr)
 
     plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots()
     ax.plot(fpr, tpr, lw=2, label=f"ROC curve (area = {roc_auc:.2f})")
     ax.plot([0, 1], [0, 1], color="gray", lw=2, linestyle="--")
 
@@ -139,7 +138,7 @@ def plot_roc_auc_curve(
 
 
 def plot_precision_recall_curve(
-    y_true: np.array, y_pred_proba: np.array, figsize: Tuple[int, int]
+    y_true: np.array, y_pred_proba: np.array
 ) -> plt.Axes:
     """
     Plot the Precision-Recall curve and calculate the Average Precision (AP).
@@ -155,7 +154,7 @@ def plot_precision_recall_curve(
     pr_auc = auc(recall, precision)
 
     plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots()
     ax.plot(recall, precision, lw=2, label=f"PR curve (AP = {pr_auc:.2f})")
 
     ax.set_title("Precision-Recall Curve", fontsize=16, fontweight="bold")
@@ -170,7 +169,7 @@ def plot_precision_recall_curve(
 
 
 def plot_ks(
-    y_true: np.array, y_pred_proba: np.array, figsize: Tuple[int, int]
+    y_true: np.array, y_pred_proba: np.array
 ) -> plt.Axes:
     """
     Plot the Kolmogorov-Smirnov (KS) statistic.
@@ -188,7 +187,7 @@ def plot_ks(
     ks_stat, p_value = stats.ks_2samp(y_pred_proba_not_default, y_pred_proba_default)
 
     plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots()
     ax.hist(
         y_pred_proba_not_default,
         bins=50,
@@ -221,7 +220,6 @@ def plot_calibration_curve(
     y_true: np.array,
     y_pred_proba: np.array,
     model_name: str,
-    figsize: Tuple[int, int],
     n_bins=10,
 ) -> plt.Axes:
     """
@@ -239,7 +237,7 @@ def plot_calibration_curve(
     prob_true, prob_pred = calibration_curve(y_true, y_pred_proba, n_bins=n_bins)
 
     plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots(figsize=figsize)
+    fig, ax = plt.subplots()
     ax.plot([0, 1], [0, 1], linestyle="--", label="Perfectly calibrated")
     ax.plot(prob_pred, prob_true, marker="o", label=model_name)
 
