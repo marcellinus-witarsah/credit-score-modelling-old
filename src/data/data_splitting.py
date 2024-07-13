@@ -4,6 +4,7 @@ from typing import Tuple
 from src.utils.common import logger
 from sklearn.model_selection import train_test_split
 from src.config.configuration_manager import ConfigurationManager
+from src.constants import GlobalConstants
 
 
 # src/data/data_preprocessing.py
@@ -47,7 +48,7 @@ class DataSplitting:
                 y,
                 stratify=y,
                 test_size=self.config.test_size,
-                random_state=self.config.random_state,
+                random_state=GlobalConstants.RANDOM_STATE.value,
             )
 
             # 4. Concat into a DataFrame:

@@ -1,8 +1,7 @@
 from pathlib import Path
 from src.utils.common import read_yaml
 from src.utils.common import create_directories
-from src.constants import CONFIG_FILE_PATH
-from src.constants import SCHEMA_FILE_PATH
+from src.constants import FileConstants
 from src.config.configuration_data_class import DataValidationConfig
 from src.config.configuration_data_class import DataSplittingConfig
 from src.config.configuration_data_class import BuildFeaturesConfig
@@ -25,8 +24,8 @@ class ConfigurationManager:
 
     def __init__(
         self,
-        config_filepath: str = CONFIG_FILE_PATH,
-        schema_filepath: str = SCHEMA_FILE_PATH,
+        config_filepath: str = FileConstants.CONFIG_FILE_PATH.value,
+        schema_filepath: str = FileConstants.SCHEMA_FILE_PATH.value,
     ):
         """
         Initialize the ConfigurationManager with file paths.
@@ -107,7 +106,8 @@ class ConfigurationManager:
 
         train_config = TrainConfig(
             processed_train_file=config.processed_train_file,
-            model_params=config.model_params,
+            woe_transformer_params=config.woe_transformer_params,
+            logreg_params=config.logreg_params,
             artifacts_dir=config.artifacts_dir,
             model_file=config.model_file,
             transformer_file=config.transformer_file,

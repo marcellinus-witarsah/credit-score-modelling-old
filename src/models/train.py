@@ -1,7 +1,6 @@
 import pandas as pd
-import pickle
 from pathlib import Path
-from src.models.logistic_regression import LogisticRegressionModel
+from src.models.woe_logistic_regression import WOELogisticRegression
 from src.config.configuration_manager import ConfigurationManager
 from src.utils.common import load_pickle, save_json, save_pickle
 
@@ -23,7 +22,10 @@ def train():
     )
 
     # 2. Initialize model
-    model = LogisticRegressionModel.from_parameters(train_config.model_params)
+    model = WOELogisticRegression.from_parameters(
+        woe_transformer_params=train_config.woe_transformer_params,
+        logreg_params=train_config.logreg_params,
+    )
 
     # 3. Train model
     model.fit(X_train, y_train)
@@ -43,8 +45,7 @@ def train():
     )
 
     # 5. Evaluate testing performance
-    woe_transformer = load_pickle(path=train_config.transformer_file, mode="rb")
-    model.evaluate(woe_transformer.transform(X_test), y_test, "Testing")
+    model.evaluate(X_test, y_test, "Testing")
     save_json(
         Path("reports/test_evaluation_metric.json"),
         {
@@ -56,7 +57,7 @@ def train():
     )
 
     # 6. Save model
-    save_pickle(data=model, path=train_config.model_file, mode="wb")
+    model.save(file=train_config.model_file)
 
 
 if __name__ == "__main__":

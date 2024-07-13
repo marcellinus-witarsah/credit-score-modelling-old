@@ -84,7 +84,8 @@ class TrainConfig:
     """
 
     processed_train_file: Path
-    model_params: dict
+    woe_transformer_params: dict
+    logreg_params: dict
     artifacts_dir: Path
     model_file: Path
     transformer_file: Path

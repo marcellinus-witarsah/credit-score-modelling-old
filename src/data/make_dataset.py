@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-import time
 from src.data.data_splitting import DataSplitting
 from src.data.data_validation import DataValidation
-from src.utils.common import logger
 
 
 def main():
