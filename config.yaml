@@ -9,12 +9,6 @@ data_splitting:
   target: "loan_status"
   test_size: 0.3
 
-build_features:
-  train_file: "data/processed/train.csv"
-  target: "loan_status"
-  artifacts_dir: "artifacts"
-  transformer_file: "artifacts/woe_transformer.pickle"
-
 train:
   train_file: "data/processed/train.csv"
   woe_transformer_params: {
@@ -23,22 +17,16 @@ train:
     "bins": 5
   }
   logreg_params: {"random_state": 42}
-  artifacts_dir: "artifacts"
-  model_file: "artifacts/model.pickle"
-  transformer_file: "artifacts/woe_transformer.pickle"
+  model_file: "models/woe_lr.pickle"
   target: "loan_status"
   test_file: "data/processed/test.csv"
   calibration_curve_file: "reports/figures/train_calibration_curve.png"
 
 evaluate:
   test_file: "data/processed/test.csv"
-  model_file: "artifacts/model.pickle"
+  model_file: "models/woe_lr.pickle"
   target: "loan_status"
   calibration_curve_file: "reports/figures/test_calibration_curve.png"
 
 predict:
-  artifacts_dir: "artifacts"
-  model_file: "artifacts/model.pickle"
-  transformer_file: "artifacts/woe_transformer.pickle"
-  target: "loan_status"
-  test_file: "data/processed/test.csv"
+  model_file: "models/woe_lr.pickle"

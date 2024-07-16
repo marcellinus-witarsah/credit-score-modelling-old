@@ -39,29 +39,6 @@ class DataSplittingConfig:
     test_file: Path
     target: str
     test_size: float
-    random_state: int
-
-
-@dataclass(frozen=True)
-class BuildFeaturesConfig:
-    """
-    Data class for storing data splitting configuration.
-
-    Attributes:
-        root_dir (Path): Root directory for data splitting.
-        source_path (Path): Source path of the data to be processed.
-        train_data_path (Path): Path to save the training data.
-        test_data_path (Path): Path to save the testing data.
-        target_column (str): The name of the target column.
-        test_size (float): The proportion of the dataset to include in the test split.
-        shuffle (bool): Whether or not to shuffle the data before splitting.
-        random_state (int): Random seed for reproducibility.
-    """
-
-    train_file: Path
-    target: str
-    transformer_file: Path
-    artifacts_dir: Path
 
 
 @dataclass(frozen=True)
@@ -85,9 +62,7 @@ class TrainConfig:
     train_file: Path
     woe_transformer_params: dict
     logreg_params: dict
-    artifacts_dir: Path
     model_file: Path
-    transformer_file: Path
     target: str
     test_file: Path
     calibration_curve_file: Path
@@ -120,8 +95,4 @@ class PredictionConfig:
         version (int): The version number of the model.
     """
 
-    artifacts_dir: Path
     model_file: Path
-    transformer_file: Path
-    target: str
-    test_file: Path

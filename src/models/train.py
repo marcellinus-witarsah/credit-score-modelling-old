@@ -46,6 +46,9 @@ def train():
         path=train_config.calibration_curve_file,
     )
 
+    # 5. Save model
+    model.save(file=train_config.model_file)
+
 
 if __name__ == "__main__":
     train()

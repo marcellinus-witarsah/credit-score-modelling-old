@@ -4,7 +4,6 @@ from src.utils.common import create_directories
 from src.constants import FileConstants
 from src.config.configuration_data_class import DataValidationConfig
 from src.config.configuration_data_class import DataSplittingConfig
-from src.config.configuration_data_class import BuildFeaturesConfig
 from src.config.configuration_data_class import TrainConfig
 from src.config.configuration_data_class import EvaluateConfig
 from src.config.configuration_data_class import PredictionConfig
@@ -75,24 +74,6 @@ class ConfigurationManager:
         return data_splitting_config
 
     @property
-    def build_features_config(self) -> BuildFeaturesConfig:
-        """Get configuration for building features.
-
-        Returns:
-            BuildFeaturesConfig: Configuration for building features.
-        """
-        config = self.config.build_features
-        create_directories([config.artifacts_dir])
-
-        build_features_config = BuildFeaturesConfig(
-            train_file=config.train_file,
-            target=config.target,
-            transformer_file=config.transformer_file,
-            artifacts_dir=config.artifacts_dir,
-        )
-        return build_features_config
-
-    @property
     def train_config(self) -> TrainConfig:
         """
         Get configuration for model training.
@@ -102,15 +83,11 @@ class ConfigurationManager:
         """
         config = self.config.train
 
-        create_directories([config.artifacts_dir])
-
         train_config = TrainConfig(
             train_file=config.train_file,
             woe_transformer_params=config.woe_transformer_params,
             logreg_params=config.logreg_params,
-            artifacts_dir=config.artifacts_dir,
             model_file=config.model_file,
-            transformer_file=config.transformer_file,
             target=config.target,
             test_file=config.test_file,
             calibration_curve_file=config.calibration_curve_file,
@@ -145,10 +122,6 @@ class ConfigurationManager:
         config = self.config.predict
 
         prediction_config = PredictionConfig(
-            artifacts_dir=config.artifacts_dir,
             model_file=config.model_file,
-            transformer_file=config.transformer_file,
-            target=config.target,
-            test_file=config.test_file,
         )
         return prediction_config
