@@ -60,7 +60,6 @@ class BuildFeaturesConfig:
 
     train_file: Path
     target: str
-    processed_train_file: Path
     transformer_file: Path
     artifacts_dir: Path
 
@@ -83,7 +82,7 @@ class TrainConfig:
         scorecard (dict): Configuration for the scorecard.
     """
 
-    processed_train_file: Path
+    train_file: Path
     woe_transformer_params: dict
     logreg_params: dict
     artifacts_dir: Path
@@ -91,6 +90,7 @@ class TrainConfig:
     transformer_file: Path
     target: str
     test_file: Path
+    calibration_curve_file: Path
 
 
 @dataclass(frozen=True)
@@ -107,6 +107,7 @@ class EvaluateConfig:
     test_file: Path
     model_file: Path
     target: str
+    calibration_curve_file: Path
 
 
 @dataclass(frozen=True)

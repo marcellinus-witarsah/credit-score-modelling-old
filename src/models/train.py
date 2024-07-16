@@ -2,23 +2,19 @@ import pandas as pd
 from pathlib import Path
 from src.models.woe_logistic_regression import WOELogisticRegression
 from src.config.configuration_manager import ConfigurationManager
-from src.utils.common import load_pickle, save_json, save_pickle
+from src.utils.common import save_json
+from src.visualization.visualize import plot_calibration_curve
 
 
 def train():
     train_config = ConfigurationManager().train_config
 
     # 1. Load data
-    train_df = pd.read_csv(train_config.processed_train_file)
+    train_df = pd.read_csv(train_config.train_file)
     test_df = pd.read_csv(train_config.test_file)
     X_train, y_train = (
         train_df.drop(columns=[train_config.target]),
         train_df[train_config.target],
-    )
-
-    X_test, y_test = (
-        test_df.drop(columns=[train_config.target]),
-        test_df[train_config.target],
     )
 
     # 2. Initialize model
@@ -43,9 +39,12 @@ def train():
             "ks_score": ks_score,
         },
     )
-
-    # 5. Save model
-    model.save(file=train_config.model_file)
+    plot_calibration_curve(
+        y_true=y_train,
+        y_pred_proba=model.predict_proba(X_train)[:, 1],
+        model_name=model.__class__.__name__,
+        path=train_config.calibration_curve_file,
+    )
 
 
 if __name__ == "__main__":

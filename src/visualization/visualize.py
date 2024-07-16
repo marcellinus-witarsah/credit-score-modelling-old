@@ -1,12 +1,13 @@
+import time
 import numpy as np
-import matplotlib.pyplot as plt
-from typing import Tuple
-from sklearn.calibration import calibration_curve
 import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy import stats
 from sklearn.metrics import roc_curve
 from sklearn.metrics import auc
 from sklearn.metrics import precision_recall_curve
-from scipy import stats
+from sklearn.calibration import calibration_curve
+from src.utils.common import logger
 
 
 def plot_calibration_curve(
@@ -29,6 +30,7 @@ def plot_calibration_curve(
     Return:
         plt.Axes: Matplotlib axis object.
     """
+    start_time = time.perf_counter()
     prob_true, prob_pred = calibration_curve(y_true, y_pred_proba, n_bins=n_bins)
 
     plt.style.use("fivethirtyeight")
@@ -45,17 +47,20 @@ def plot_calibration_curve(
 
     if path is not None:
         # Save figure
-        fig.savefig(path)
+        fig.savefig(path, bbox_inches="tight")
 
     # Close plot
     plt.close(fig)
-
+    elapsed_time = time.perf_counter() - start_time
+    logger.info(
+        "Generating calibration curve plot finished in {:.2f} seconds.".format(
+            elapsed_time
+        )
+    )
     return image
 
 
-def plot_pred_proba_distribution(
-    y_true: np.array, y_pred_proba: np.array
-) -> plt.Axes:
+def plot_pred_proba_distribution(y_true: np.array, y_pred_proba: np.array) -> plt.Axes:
     """
     Plot the predicted probability distributions for the default and non-default classes.
 
@@ -103,9 +108,7 @@ def plot_pred_proba_distribution(
     return image
 
 
-def plot_roc_auc_curve(
-    y_true: np.array, y_pred_proba: np.array
-) -> plt.Axes:
+def plot_roc_auc_curve(y_true: np.array, y_pred_proba: np.array) -> plt.Axes:
     """
     Plot the ROC curve and calculate the AUC.
 
@@ -137,9 +140,7 @@ def plot_roc_auc_curve(
     return image
 
 
-def plot_precision_recall_curve(
-    y_true: np.array, y_pred_proba: np.array
-) -> plt.Axes:
+def plot_precision_recall_curve(y_true: np.array, y_pred_proba: np.array) -> plt.Axes:
     """
     Plot the Precision-Recall curve and calculate the Average Precision (AP).
 
@@ -168,9 +169,7 @@ def plot_precision_recall_curve(
     return image
 
 
-def plot_ks(
-    y_true: np.array, y_pred_proba: np.array
-) -> plt.Axes:
+def plot_ks(y_true: np.array, y_pred_proba: np.array) -> plt.Axes:
     """
     Plot the Kolmogorov-Smirnov (KS) statistic.
 
@@ -210,42 +209,6 @@ def plot_ks(
     ax.set_xlabel("Value")
     ax.set_ylabel("Cumulative Probability")
     ax.legend(title=f"KS Statistic: {ks_stat:.3f}, P-value: {p_value:.3f}")
-
-    image = fig
-
-    return image
-
-
-def plot_calibration_curve(
-    y_true: np.array,
-    y_pred_proba: np.array,
-    model_name: str,
-    n_bins=10,
-) -> plt.Axes:
-    """
-    Plot calibration curve.
-
-    Args:
-        y_pred_proba (np.array): Predicted probabilities for the positive class (default).
-        y_true (np.array): True binary labels (0 for not default, 1 for default).
-        model_name (str): Name of the model for labeling the plot.
-        figsize (Tuple[int, int]): size of the plot.
-        n_bins (int): Number of bins to use for calibration curve.
-    Return:
-        plt.Axes: Matplotlib axis object.
-    """
-    prob_true, prob_pred = calibration_curve(y_true, y_pred_proba, n_bins=n_bins)
-
-    plt.style.use("fivethirtyeight")
-    fig, ax = plt.subplots()
-    ax.plot([0, 1], [0, 1], linestyle="--", label="Perfectly calibrated")
-    ax.plot(prob_pred, prob_true, marker="o", label=model_name)
-
-    ax.set_xlabel("Mean predicted probability")
-    ax.set_ylabel("Fraction of positives")
-    ax.set_title("Calibration plot")
-    ax.legend()
-    ax.grid(True)
 
     image = fig
 

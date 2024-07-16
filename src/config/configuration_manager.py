@@ -87,7 +87,6 @@ class ConfigurationManager:
         build_features_config = BuildFeaturesConfig(
             train_file=config.train_file,
             target=config.target,
-            processed_train_file=config.processed_train_file,
             transformer_file=config.transformer_file,
             artifacts_dir=config.artifacts_dir,
         )
@@ -106,7 +105,7 @@ class ConfigurationManager:
         create_directories([config.artifacts_dir])
 
         train_config = TrainConfig(
-            processed_train_file=config.processed_train_file,
+            train_file=config.train_file,
             woe_transformer_params=config.woe_transformer_params,
             logreg_params=config.logreg_params,
             artifacts_dir=config.artifacts_dir,
@@ -114,6 +113,7 @@ class ConfigurationManager:
             transformer_file=config.transformer_file,
             target=config.target,
             test_file=config.test_file,
+            calibration_curve_file=config.calibration_curve_file,
         )
         return train_config
 
@@ -130,6 +130,7 @@ class ConfigurationManager:
             test_file=config.test_file,
             model_file=config.model_file,
             target=config.target,
+            calibration_curve_file=config.calibration_curve_file,
         )
         return evaluate_config
 

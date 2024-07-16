@@ -28,11 +28,13 @@ train:
   transformer_file: "artifacts/woe_transformer.pickle"
   target: "loan_status"
   test_file: "data/processed/test.csv"
+  calibration_curve_file: "reports/figures/train_calibration_curve.png"
 
 evaluate:
   test_file: "data/processed/test.csv"
   model_file: "artifacts/model.pickle"
   target: "loan_status"
+  calibration_curve_file: "reports/figures/test_calibration_curve.png"
 
 predict:
   artifacts_dir: "artifacts"
