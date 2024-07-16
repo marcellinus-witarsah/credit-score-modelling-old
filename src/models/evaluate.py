@@ -1,5 +1,4 @@
 import pandas as pd
-import pickle
 from src.models.woe_logistic_regression import WOELogisticRegression
 from src.config.configuration_manager import ConfigurationManager
 
