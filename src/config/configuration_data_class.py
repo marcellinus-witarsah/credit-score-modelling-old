@@ -94,6 +94,22 @@ class TrainConfig:
 
 
 @dataclass(frozen=True)
+class EvaluateConfig:
+    """
+    Data class for storing model evaluation configuration.
+
+    Attributes:
+        model_file (Path): Path to save the trained model.
+        test_file (Path): Path to the test data.
+        target (str): The name of the target column.
+    """
+
+    test_file: Path
+    model_file: Path
+    target: str
+
+
+@dataclass(frozen=True)
 class PredictionConfig:
     """
     Data class for storing model prediction configuration.

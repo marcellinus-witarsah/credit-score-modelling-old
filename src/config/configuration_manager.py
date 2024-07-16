@@ -6,6 +6,7 @@ from src.config.configuration_data_class import DataValidationConfig
 from src.config.configuration_data_class import DataSplittingConfig
 from src.config.configuration_data_class import BuildFeaturesConfig
 from src.config.configuration_data_class import TrainConfig
+from src.config.configuration_data_class import EvaluateConfig
 from src.config.configuration_data_class import PredictionConfig
 
 
@@ -115,6 +116,22 @@ class ConfigurationManager:
             test_file=config.test_file,
         )
         return train_config
+
+    @property
+    def evaluate_config(self) -> EvaluateConfig:
+        """
+        Get configuration for model evaluation.
+
+        Returns:
+            EvaluateConfig: Configuration for model evaluation.
+        """
+        config = self.config.evaluate
+        evaluate_config = EvaluateConfig(
+            test_file=config.test_file,
+            model_file=config.model_file,
+            target=config.target,
+        )
+        return evaluate_config
 
     @property
     def prediction_config(self) -> PredictionConfig:

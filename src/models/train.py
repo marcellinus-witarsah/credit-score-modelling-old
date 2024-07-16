@@ -44,19 +44,7 @@ def train():
         },
     )
 
-    # 5. Evaluate testing performance
-    model.evaluate(X_test, y_test, "Testing")
-    save_json(
-        Path("reports/test_evaluation_metric.json"),
-        {
-            "roc_auc_score": roc_auc_score,
-            "pr_auc_score": pr_auc_score,
-            "gini_score": gini_score,
-            "ks_score": ks_score,
-        },
-    )
-
-    # 6. Save model
+    # 5. Save model
     model.save(file=train_config.model_file)
 
 
