@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class FileConstants(Enum):
-    CONFIG_FILE_PATH = "src/config.yaml"
-    SCHEMA_FILE_PATH = "src/schema.yaml"
+    CONFIG_FILE_PATH = "config.yaml"
+    SCHEMA_FILE_PATH = "schema.yaml"
 
 
 class GlobalConstants(Enum):
